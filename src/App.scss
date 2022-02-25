@@ -1,0 +1,16 @@
+$typography-color: #606060;
+$default-font: "Roboto", sans-serif;
+
+.App {
+    margin: 8px 24px;
+    width: 100vw;
+    height: 100vh;
+
+    &TitleHeader {
+        font-family: $default-font;
+        font-weight: 400;
+        font-size: 20px;
+        letter-spacing: 0.15px;
+        color: $typography-color;
+    }
+}

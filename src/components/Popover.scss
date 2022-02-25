@@ -1,0 +1,30 @@
+$font-title-color: #606060;
+$font-family: "Roboto", sans-serif;
+
+.Popover {
+    &Container {
+        padding: 16px;
+    }
+
+    &Title {
+        font-family: $font-family;
+        font-weight: 700;
+        font-size: 16px;
+        letter-spacing: 0.15px;
+        color: $font-title-color;
+    }
+
+    &Divider {
+        height: 1px;
+        background-color: #ccc;
+        border: none;
+    }
+
+    &Content {
+        background-color: #ffffff;
+        box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.25);
+        border-radius: 4px;
+        padding: 8px;
+        margin-top: 10px;
+    }
+}
