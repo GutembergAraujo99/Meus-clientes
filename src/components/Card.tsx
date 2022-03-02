@@ -9,16 +9,20 @@ import ListIcon from '@material-ui/icons/List';
 import PersonAddIcon from '@material-ui/icons/PersonAdd';
 import React, { ReactNode, useState } from 'react';
 import { v4 as uuid } from 'uuid';
+import { items } from '../mock/Card.mock';
+import { CustomerRegisterForm } from '../modules/customer-register-form/CustomerRegisterForm';
+import { GenerateTicketForm } from '../modules/generate-ticket-form/GenerateTicketsForm';
 import { ActionButton } from './ActionButton';
 import './Card.scss';
 import { ContentType, CustomPopover } from './Popover';
-import { items } from '../mock/Card.mock';
 
 export type IconType = OverridableComponent<SvgIconTypeMap<{}, "svg">> & {
     muiName: string;
 }
 
 function CardHeader() {
+    const [open, setOpen] = useState(false);
+
     return <div className="CardHeader">
         <div>
             <TextField variant="outlined" size="small" placeholder="Pesquisar por nome, telefone ou e-mail" className="CardHeaderAdjustTextField" />
@@ -27,16 +31,26 @@ function CardHeader() {
             </span>
         </div>
         <div>
-            <ActionButton color="secondary" icon={<PersonAddIcon />} text="Cliente" onClick={() => console.log('Cliente')} />
+            <ActionButton color="secondary" icon={<PersonAddIcon />} text="Cliente" onClick={onOpenCustomerRegister} />
         </div>
+        <CustomerRegisterForm open={open} onClose={onCloseCustomerRegister} />
     </div>
+
+    function onOpenCustomerRegister() {
+        setOpen(true);
+    }
+
+    function onCloseCustomerRegister() {
+        setOpen(false);
+    }
 }
 
 function CardBody() {
-    const [checked,setChecked] = useState(false);
-    const [selected, setSelected] = useState<number[]>([]);
 
-    return <div className="CardContent">
+    const [checked, setChecked] = useState(false);
+    const [open, setOpen] = useState(false);
+
+    return <div>
         <div className="CardTitle">
             <Checkbox
                 color="secondary"
@@ -48,10 +62,11 @@ function CardBody() {
                 <h4 className="CardTitleAdjustLastPurchase">Data última compra</h4>
                 <h4 className="CardTitleAdjustLastVehicle">Último veículo</h4>
                 <h4 className="CardTitleAdjustFleetLabel">Frota</h4>
-                <ActionButton icon={<ListIcon />} text="Gerar evento" onClick={() => console.log('Gerar evento')} />
+                <ActionButton icon={<ListIcon />} text="Gerar evento" onClick={onOpenGenerateTicket} />
             </div>
+            <GenerateTicketForm open={open} onClose={onCloseGenerateTicket} />
         </div>
-        <div>
+        <div className="CardContent">
             {items.map(item => <div key={item.id} className="CardItem">
                 <Checkbox color="secondary" checked={checked} onChange={handleSelect} />
                 <div className="CardItemAdjustItems">
@@ -92,6 +107,14 @@ function CardBody() {
 
     function handleSelectAll(event: React.ChangeEvent<HTMLInputElement>) {
         setChecked(!checked);
+    }
+
+    function onOpenGenerateTicket() {
+        setOpen(true);
+    }
+
+    function onCloseGenerateTicket() {
+        setOpen(false);
     }
 }
 

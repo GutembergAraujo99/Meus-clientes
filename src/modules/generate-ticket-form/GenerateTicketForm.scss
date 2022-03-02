@@ -1,0 +1,49 @@
+.GenerateTicketForm {
+    margin-top: 16px;
+    &AdjustSelect {
+        display: flex;
+        align-items: center;
+    }
+
+    &GroupEvent {
+        width: 268.47px;
+        margin-right: 16px;
+    }
+
+    &EventType {
+        width: 268.47px;
+    }
+
+    &Alert {
+        margin-top: 10px;
+    }
+
+    &DisregardCustomer {
+        margin-top: 6px !important;
+    }
+
+    &AdjustGenerateContacts {
+        margin: 20px 0px;
+    }
+
+    &AdjustWorkDaysTextField {
+        width: 284px;
+    }
+
+    &ConsiderWeekDays {
+        display: flex;
+        margin-left: 10px;
+    }
+
+    &ConsiderWeekDaysSpacing {
+        margin-right: 10px;
+    }
+
+    &AdjustGenerateCompanyTicket {
+        margin-top: 20px;
+    }
+
+    &AdjustTypographyColor {
+        color: #606060;
+    }
+}

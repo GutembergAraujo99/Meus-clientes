@@ -11,6 +11,9 @@ $font-family: "Roboto", sans-serif;
         box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.25);
         border-radius: 8px 8px 0px 0px;
         padding: 16px;
+        height: 80vh;
+        max-height: 90vh;
+        overflow: auto;
     }
 
     &Header {
@@ -44,6 +47,11 @@ $font-family: "Roboto", sans-serif;
             color: $font-title-color;
             margin-left: 10px;
         }
+    }
+
+    &Content {
+        max-height: 90vh;
+        overflow: auto;
     }
 
     &Item {
@@ -140,7 +148,7 @@ $font-family: "Roboto", sans-serif;
     &Footer {
         display: flex;
         justify-content: space-between;
-        margin: 10px -16px -18px;
+        margin: 52px -16px -18px;
         border-top: 1px solid #e0e0e0;
         padding: 20px 18px;
 

@@ -1,0 +1,75 @@
+.CustomerRegisterForm {
+    &AdjustFields {
+        display: flex;
+        align-items: center;
+        margin: 10px 0px;
+        flex-wrap: wrap;
+    }
+
+    &AdjustFieldPosition {
+        margin: 16px 20px 10px 0px;
+    }
+
+    &AdjustNameField {
+        width: 830px;
+    }
+
+    &PersonTypeField {
+        width: 180px;
+    }
+
+    &CpfField {
+        width: 180px;
+    }
+
+    &BirthDayField {
+        width: 180px;
+    }
+
+    &GenderField {
+        width: 230px;
+    }
+
+    &SourceField {
+        width: 180px;
+    }
+}
+
+.CustomerRegisterFormContact {
+
+    &AdjustTitle {
+        display: flex;
+        justify-content: space-between;
+        margin-right: 360px;
+    }
+
+    &AdjustFields {
+        display: flex;
+        justify-content: space-between;
+        margin: 10px 20px 10px 0px;
+    }
+
+    &AdjustPosition {
+        display: flex;
+    }
+
+    &SpacingBetweenFields {
+        margin-right: 16px;
+    }
+
+    &SpacingBetweenFieldAndIcon {
+        margin-right: 10px;
+    }
+
+    &PhoneTypeField {
+        width: 180px;
+    }
+
+    &PhoneField {
+        width: 148px;
+    }
+
+    &EmailField {
+        width: 344px;
+    }
+}

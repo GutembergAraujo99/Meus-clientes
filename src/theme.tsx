@@ -54,7 +54,7 @@ export function getOrCreateTheme() {
                     dark: '#3B873E',
                     light: '#7BC67E'
                 },
-                divider: '#E0E0E0',
+                divider: '#E0E0E0'
             }
         }, locale);
 

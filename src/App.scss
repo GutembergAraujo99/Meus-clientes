@@ -6,6 +6,11 @@ $default-font: "Roboto", sans-serif;
     width: 100vw;
     height: 100vh;
 
+    display: flex;
+    flex-direction: column;
+    flex-shrink: 1;
+    flex-grow: 1;
+
     &TitleHeader {
         font-family: $default-font;
         font-weight: 400;
