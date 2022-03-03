@@ -1,5 +1,4 @@
-$typography-color: #606060;
-$default-font: "Roboto", sans-serif;
+@import "./scss/variables";
 
 .App {
     margin: 8px 24px;
@@ -12,10 +11,10 @@ $default-font: "Roboto", sans-serif;
     flex-grow: 1;
 
     &TitleHeader {
-        font-family: $default-font;
+        font-family: $font-family;
         font-weight: 400;
         font-size: 20px;
         letter-spacing: 0.15px;
-        color: $typography-color;
+        color: $font-title-color;
     }
 }

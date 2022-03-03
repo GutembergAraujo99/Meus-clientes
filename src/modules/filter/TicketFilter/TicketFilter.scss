@@ -1,0 +1,64 @@
+@import "../../../scss/variables";
+
+.TicketFilter {
+    &AdjustFields {
+        display: flex;
+        flex-wrap: wrap;
+        margin: 16px 0px;
+    }
+
+    &AdjustField {
+        margin: 0px 16px 16px 0px;
+    }
+
+    &AdjustTicketNumber {
+        width: 190px;
+    }
+
+    &AdjustDateType {
+        width: 190px;
+    }
+
+    &AdjustStartDate {
+        width: 190px;
+    }
+
+    &AdjustEndDate {
+        width: 190px;
+    }
+
+    &AdjustSource {
+        width: 190px;
+    }
+
+    &AdjustMedia {
+        width: 190px;
+    }
+}
+
+.TicketFilterLostSalesInPeriod {
+    &Label {
+        font-family: $font-family;
+        font-weight: 500;
+        font-size: 16px;
+        letter-spacing: 0.1px;
+        color: $font-title-color;
+    }
+
+    &AdjustFields {
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    &AdjustField {
+        margin-right: 16px;
+    }
+
+    &StartDate {
+        width: 190px;
+    }
+
+    &EndDate {
+        width: 190px;
+    }
+}

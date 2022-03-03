@@ -1,0 +1,100 @@
+@import "../../../scss/variables";
+
+@mixin flexWrap() {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.CustomerFilter {
+    margin-top: 16px;
+
+    &AdjustFields {
+        @include flexWrap();
+    }
+
+    &AdjustField {
+        margin: 0px 16px 16px 0px;
+    }
+
+    &AdjustName {
+        width: 380px;
+    }
+
+    &AdjustEmail {
+        width: 210px;
+    }
+
+    &AdjustPhone {
+        width: 210px;
+    }
+
+    &AdjustPersonType {
+        width: 180px;
+    }
+
+    &AdjustCpf {
+        width: 185px;
+    }
+
+    &AdjustSource {
+        width: 210px;
+    }
+
+    &AdjustGender {
+        width: 210px;
+    }
+
+    &AdjustCustomerType {
+        width: 180px;
+    }
+
+    &AdjustBirthday {
+        width: 185px;
+    }
+
+    &AdjustOccupationArea {
+        width: 210px;
+    }
+}
+
+.CustomerFilterAddress {
+    &Label {
+        font-family: $font-family;
+        font-weight: 500;
+        font-size: 16px;
+        letter-spacing: 0.1px;
+        color: $font-title-color;
+    }
+
+    &AdjustFields {
+        @include flexWrap();
+    }
+
+    &AdjustField {
+        margin: 0px 16px 16px 0px;
+    }
+
+    &AdjustStreet {
+        width: 376px;
+    }
+
+    &AdjustDistrict {
+        width: 180px;
+    }
+
+    &AdjustCity {
+        width: 180px;
+    }
+
+    &AdjustState {
+        width: 180px;
+    }
+
+    &AdjustCountry {
+        width: 180px;
+    }
+
+    &AdjustCep {
+        width: 180px;
+    }
+}

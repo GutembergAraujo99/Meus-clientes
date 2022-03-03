@@ -16,7 +16,7 @@ export function GenerateTicketForm({ open, onClose }: GenerateTicketFormProps) {
         defaultButtonText="Cancelar"
         secondaryButtonText="Gerar"
         open={open}
-        handleClose={onClose}
+        onClose={onClose}
     />
 }
 
@@ -113,7 +113,7 @@ function GenerateTicketFormContent() {
         </div>
         <FormGroup className="GenerateTicketFormAdjustGenerateCompanyTicket">
             <FormControlLabel
-                control={<Checkbox color="secondary" />}
+                control={<Checkbox color="secondary" defaultChecked />}
                 label="Gerar evento para empresa do cliente"
                 className="GenerateTicketFormAdjustTypographyColor"
             />

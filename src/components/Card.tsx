@@ -11,6 +11,7 @@ import React, { ReactNode, useState } from 'react';
 import { v4 as uuid } from 'uuid';
 import { items } from '../mock/Card.mock';
 import { CustomerRegisterForm } from '../modules/customer-register-form/CustomerRegisterForm';
+import { Filter } from '../modules/filter/Filter';
 import { GenerateTicketForm } from '../modules/generate-ticket-form/GenerateTicketsForm';
 import { ActionButton } from './ActionButton';
 import './Card.scss';
@@ -21,27 +22,37 @@ export type IconType = OverridableComponent<SvgIconTypeMap<{}, "svg">> & {
 }
 
 function CardHeader() {
-    const [open, setOpen] = useState(false);
+    const [openCustomerRegister, setOpenCustomerRegister] = useState(false);
+    const [openFilter, setOpenFilter] = useState(false);
 
     return <div className="CardHeader">
         <div>
             <TextField variant="outlined" size="small" placeholder="Pesquisar por nome, telefone ou e-mail" className="CardHeaderAdjustTextField" />
             <span className="CardHeaderAdjustButtonPosition">
-                <ActionButton icon={<FilterListIcon />} text="Filtros" onClick={() => console.log('Filtro')} />
+                <ActionButton icon={<FilterListIcon />} text="Filtros" onClick={onOpenFilter} />
             </span>
+            <Filter open={openFilter} onClose={onCloseFilter} />
         </div>
         <div>
             <ActionButton color="secondary" icon={<PersonAddIcon />} text="Cliente" onClick={onOpenCustomerRegister} />
         </div>
-        <CustomerRegisterForm open={open} onClose={onCloseCustomerRegister} />
+        <CustomerRegisterForm open={openCustomerRegister} onClose={onCloseCustomerRegister} />
     </div>
 
+    function onOpenFilter() {
+        setOpenFilter(true);
+    }
+
+    function onCloseFilter() {
+        setOpenFilter(false);
+    }
+
     function onOpenCustomerRegister() {
-        setOpen(true);
+        setOpenCustomerRegister(true);
     }
 
     function onCloseCustomerRegister() {
-        setOpen(false);
+        setOpenCustomerRegister(false);
     }
 }
 

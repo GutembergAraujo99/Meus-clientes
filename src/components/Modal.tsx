@@ -1,40 +1,39 @@
-import { Button, Dialog, DialogActions, DialogContent, DialogTitle, Divider, Slide } from '@material-ui/core';
-import { TransitionProps } from '@material-ui/core/transitions';
+import { Button, Dialog, DialogActions, DialogContent, DialogTitle, Divider, IconButton } from '@material-ui/core';
+import CloseIcon from '@material-ui/icons/Close';
 import React from 'react';
 import './Modal.scss';
 
-const Transition = React.forwardRef(function Transition(
-    props: TransitionProps & { children?: React.ReactElement<any, any>; },
-    ref: React.Ref<unknown>
-) {
-    return <Slide direction="up" ref={ref} {...props} />
-});
-
 interface ModalProps {
     title: string
+    closeIcon?: boolean
     content: JSX.Element
     defaultButtonText: string
     secondaryButtonText: string
     open: boolean
-    handleClose: () => void
+    onClose: () => void
 }
 
-export function Modal({ title, content, defaultButtonText, secondaryButtonText, open, handleClose }: ModalProps) {
+export function Modal({ title, closeIcon, content, defaultButtonText, secondaryButtonText, open, onClose }: ModalProps) {
     return <Dialog
         open={open}
-        TransitionComponent={Transition}
         keepMounted
         maxWidth="md"
-        onClose={handleClose}
+        onClose={onClose}
     >
         <DialogTitle>
             <span className="ModalTitle">{title}</span>
+            {closeIcon
+                ? <IconButton onClick={onClose} className="ModalCloseButton">
+                    <CloseIcon />
+                </IconButton>
+                : <></>
+            }
             <Divider />
         </DialogTitle>
         <DialogContent>{content}</DialogContent>
         <DialogActions className="ModalFooter">
-            <Button variant="contained" onClick={handleClose}>{defaultButtonText}</Button>
-            <Button variant="contained" color="secondary" onClick={handleClose}>{secondaryButtonText}</Button>
+            <Button variant="contained" onClick={onClose}>{defaultButtonText}</Button>
+            <Button variant="contained" color="secondary" onClick={onClose}>{secondaryButtonText}</Button>
         </DialogActions>
     </Dialog>
 }

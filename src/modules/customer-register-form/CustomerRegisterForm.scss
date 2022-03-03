@@ -1,13 +1,21 @@
-.CustomerRegisterForm {
+@import "../../scss/variables";
+
+@mixin CustomFont($font-color) {
+    font-family: $font-family;
+    font-weight: 500;
+    font-size: 14px;
+    letter-spacing: 0.1px;
+    color: $font-color;
+}
+
+.CustomerRegisterFormPersonalData {
     &AdjustFields {
         display: flex;
-        align-items: center;
-        margin: 10px 0px;
         flex-wrap: wrap;
     }
 
     &AdjustFieldPosition {
-        margin: 16px 20px 10px 0px;
+        margin: 16px 16px 16px 0px;
     }
 
     &AdjustNameField {
@@ -15,7 +23,7 @@
     }
 
     &PersonTypeField {
-        width: 180px;
+        width: 191px;
     }
 
     &CpfField {
@@ -31,16 +39,23 @@
     }
 
     &SourceField {
-        width: 180px;
+        width: 191px;
     }
 }
 
 .CustomerRegisterFormContact {
-
     &AdjustTitle {
         display: flex;
         justify-content: space-between;
         margin-right: 360px;
+    }
+
+    &AdjustTitleFont {
+        @include CustomFont($font-title-color);
+    }
+
+    &AdjustSubTitleFont {
+        @include CustomFont($font-subtitle-color);
     }
 
     &AdjustFields {
@@ -71,5 +86,53 @@
 
     &EmailField {
         width: 344px;
+    }
+}
+
+.CustomerRegisterFormAddress {
+    &AdjustTitleFont {
+        @include CustomFont($font-title-color);
+        margin: 16px 0px;
+    }
+
+    &AdjustFields {
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    &SpacingBetweenFields {
+        margin: 0px 16px 16px 0px;
+    }
+
+    &AdjustPublicPlaceField {
+        width: 200px;
+    }
+
+    &AdjustPublicPlaceNameField {
+        width: 376px;
+    }
+
+    &AdjustPublicPlaceNumberField {
+        width: 200px;
+    }
+
+    &AdjustCountryField {
+        width: 200px;
+    }
+
+    &AdjustStateField {
+        width: 180px;
+    }
+
+    &AdjustCityField {
+        width: 180px;
+    }
+
+    &AdjustDistrictField {
+        width: 200px;
+    }
+
+    &AdjustCepField {
+        width: 200px;
     }
 }
