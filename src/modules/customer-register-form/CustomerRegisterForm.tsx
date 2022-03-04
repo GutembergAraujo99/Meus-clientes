@@ -1,10 +1,11 @@
-import { FormControl, IconButton, InputLabel, MenuItem, Select, SelectChangeEvent, TextField } from '@material-ui/core';
+import { IconButton, SelectChangeEvent, TextField } from '@material-ui/core';
 import AddCircleIcon from '@material-ui/icons/AddCircle';
 import * as React from 'react';
 import InputMask from 'react-input-mask';
-import { v4 as uuid } from 'uuid';
+import { ComboBox } from '../../components/ComboBox/ComboBox';
 import { SimpleDatePicker } from '../../components/DatePicker/DatePicker';
 import { Modal } from '../../components/Modal/Modal';
+import { items } from '../../mock/CustomerRegisterForm.mock';
 import './CustomerRegisterForm.scss';
 
 interface CustomerRegisterFormProps {
@@ -20,6 +21,7 @@ export function CustomerRegisterForm({ open, onClose }: CustomerRegisterFormProp
         secondaryButtonText="Salvar"
         open={open}
         onClose={onClose}
+        hasDivider
     />
 }
 
@@ -46,19 +48,16 @@ function CustomerRegisterFormPersonalData() {
         />
         <div className="CustomerRegisterFormPersonalDataAdjustFields">
             <div className="CustomerRegisterFormPersonalDataAdjustFieldPosition">
-                <FormControl size="small" className="CustomerRegisterFormPersonalDataPersonTypeField">
-                    <InputLabel>Tipo de pessoa</InputLabel>
-                    <Select
-                        id={uuid()}
+                {items.map((item, index) => {
+                    return <ComboBox
+                        key={index}
                         value={personType}
                         label="Tipo de pessoa"
                         onChange={onChangePersonType}
-                    >
-                        <MenuItem value={1}>Tipo de pessoa 1</MenuItem>
-                        <MenuItem value={2}>Tipo de pessoa 2</MenuItem>
-                        <MenuItem value={3}>Tipo de pessoa 3</MenuItem>
-                    </Select>
-                </FormControl>
+                        items={item.customer.personType}
+                        className="CustomerRegisterFormPersonalDataPersonTypeField"
+                    />
+                })}
             </div>
             <div className="CustomerRegisterFormPersonalDataAdjustFieldPosition">
                 <InputMask mask="999.999.999-99" value={cpf} onChange={onChangeCpf}>
@@ -74,33 +73,28 @@ function CustomerRegisterFormPersonalData() {
                 <SimpleDatePicker label="Data nascimento" className="CustomerRegisterFormPersonalDataBirthDayField" />
             </div>
             <div className="CustomerRegisterFormPersonalDataAdjustFieldPosition">
-                <FormControl size="small" className="CustomerRegisterFormPersonalDataGenderField">
-                    <InputLabel>Sexo</InputLabel>
-                    <Select
-                        id={uuid()}
+                {items.map((item, index) => {
+                    return <ComboBox
+                        key={index}
                         value={gender}
                         label="Sexo"
+                        items={item.customer.gender}
                         onChange={onChangeGender}
-                    >
-                        <MenuItem value={1}>Masculino</MenuItem>
-                        <MenuItem value={2}>Feminino</MenuItem>
-                    </Select>
-                </FormControl>
+                        className="CustomerRegisterFormPersonalDataGenderField"
+                    />
+                })}
             </div>
             <div className="CustomerRegisterFormPersonalDataAdjustFieldPosition">
-                <FormControl size="small" className="CustomerRegisterFormPersonalDataSourceField">
-                    <InputLabel>Origem</InputLabel>
-                    <Select
-                        id={uuid()}
+                {items.map((item, index) => {
+                    return <ComboBox
+                        key={index}
                         value={source}
                         label="Origem"
+                        items={item.customer.source}
                         onChange={onChangeSource}
-                    >
-                        <MenuItem value={1}>Loja</MenuItem>
-                        <MenuItem value={2}>Internet</MenuItem>
-                        <MenuItem value={3}>Feirão</MenuItem>
-                    </Select>
-                </FormControl>
+                        className="CustomerRegisterFormPersonalDataSourceField"
+                    />
+                })}
             </div>
         </div>
     </div>
@@ -135,19 +129,16 @@ function CustomerRegisterFormContact() {
         <div className="CustomerRegisterFormContactAdjustFields">
             <div className="CustomerRegisterFormContactAdjustPosition">
                 <div className="CustomerRegisterFormContactSpacingBetweenFields">
-                    <FormControl size="small" className="CustomerRegisterFormContactPhoneTypeField">
-                        <InputLabel>Tipo de telefone</InputLabel>
-                        <Select
-                            id={uuid()}
+                    {items.map((item, index) => {
+                        return <ComboBox
+                            key={index}
                             value={phoneType}
                             label="Tipo de telefone"
+                            items={item.customer.phoneType}
                             onChange={onChangePhoneType}
-                        >
-                            <MenuItem value={1}>Telefone Comercial</MenuItem>
-                            <MenuItem value={2}>Telefone Residencial</MenuItem>
-                            <MenuItem value={3}>Telefone Pessoal</MenuItem>
-                        </Select>
-                    </FormControl>
+                            className="CustomerRegisterFormContactPhoneTypeField"
+                        />
+                    })}
                 </div>
                 <div className="CustomerRegisterFormContactSpacingBetweenFieldAndIcon">
                     <TextField
@@ -211,19 +202,16 @@ function CustomerRegisterFormAddress() {
         <p className="CustomerRegisterFormAddressAdjustTitleFont">Endereço</p>
         <div className="CustomerRegisterFormAddressAdjustFields">
             <div className="CustomerRegisterFormAddressSpacingBetweenFields">
-                <FormControl size="small" className="CustomerRegisterFormAddressAdjustPublicPlaceField">
-                    <InputLabel>Tipo logradouro</InputLabel>
-                    <Select
-                        id={uuid()}
+                {items.map((item, index) => {
+                    return <ComboBox
+                        key={index}
                         value={publicPlace}
                         label="Tipo logradouro"
+                        items={item.customer.publicPlace}
                         onChange={onChangePublicPlace}
-                    >
-                        <MenuItem value={1}>Rua</MenuItem>
-                        <MenuItem value={2}>Avenida</MenuItem>
-                        <MenuItem value={3}>Alameda</MenuItem>
-                    </Select>
-                </FormControl>
+                        className="CustomerRegisterFormAddressAdjustPublicPlaceField"
+                    />
+                })}
             </div>
             <div className="CustomerRegisterFormAddressSpacingBetweenFields">
                 <TextField variant="outlined" size="small" placeholder="Nome do logradouro" className="CustomerRegisterFormAddressAdjustPublicPlaceNameField" />
@@ -242,34 +230,28 @@ function CustomerRegisterFormAddress() {
                 <TextField variant="outlined" size="small" placeholder="País" className="CustomerRegisterFormAddressAdjustCountryField" />
             </div>
             <div className="CustomerRegisterFormAddressSpacingBetweenFields">
-                <FormControl size="small" className="CustomerRegisterFormAddressAdjustStateField">
-                    <InputLabel>Estado</InputLabel>
-                    <Select
-                        id={uuid()}
+                {items.map((item, index) => {
+                    return <ComboBox
+                        key={index}
                         value={state}
                         label="Estado"
                         onChange={onChangeState}
-                    >
-                        <MenuItem value={'SP'}>SP</MenuItem>
-                        <MenuItem value={'RS'}>RS</MenuItem>
-                        <MenuItem value={'RJ'}>RJ</MenuItem>
-                    </Select>
-                </FormControl>
+                        items={item.customer.state}
+                        className="CustomerRegisterFormAddressAdjustStateField"
+                    />
+                })}
             </div>
             <div className="CustomerRegisterFormAddressSpacingBetweenFields">
-                <FormControl size="small" className="CustomerRegisterFormAddressAdjustCityField">
-                    <InputLabel>Cidade</InputLabel>
-                    <Select
-                        id={uuid()}
+                {items.map((item, index) => {
+                    return <ComboBox
+                        key={index}
                         value={city}
                         label="Cidade"
                         onChange={onChangeCity}
-                    >
-                        <MenuItem value={1}>Salto</MenuItem>
-                        <MenuItem value={2}>Montenegro</MenuItem>
-                        <MenuItem value={3}>Rio de Janeiro</MenuItem>
-                    </Select>
-                </FormControl>
+                        items={item.customer.city}
+                        className="CustomerRegisterFormAddressAdjustCityField"
+                    />
+                })}
             </div>
             <div className="CustomerRegisterFormAddressSpacingBetweenFields">
                 <TextField variant="outlined" size="small" placeholder="Bairro" className="CustomerRegisterFormAddressAdjustDistrictField" />

@@ -60,6 +60,7 @@ function CardHeader() {
 function CardBody() {
     const [openGenerateTicketForm, setOpenGenerateTicketForm] = useState(false);
     const [openCustomerInfo, setOpenCustomerInfo] = useState(false);
+    const [openCustomerRegisterForm, setOpenCustomerRegisterForm] = useState(false);
 
     return <div>
         <div className="CardTitle">
@@ -107,7 +108,8 @@ function CardBody() {
             </div>
             )}
         </div>
-        <CustomerInfo open={openCustomerInfo} onClose={onCloseCustomerInfo} />
+        <CustomerInfo open={openCustomerInfo} onClose={onCloseCustomerInfo} onOpenEdition={onOpenCustomerRegisterForm} />
+        <CustomerRegisterForm open={openCustomerRegisterForm} onClose={onCloseCustomerRegisterForm} />
     </div>
 
     function onOpenGenerateTicket() {
@@ -124,6 +126,16 @@ function CardBody() {
 
     function onCloseCustomerInfo() {
         setOpenCustomerInfo(false);
+    }
+
+    function onOpenCustomerRegisterForm() {
+        setOpenCustomerInfo(false);
+        setOpenCustomerRegisterForm(true);
+    }
+
+    function onCloseCustomerRegisterForm() {
+        setOpenCustomerInfo(true);
+        setOpenCustomerRegisterForm(false);
     }
 }
 

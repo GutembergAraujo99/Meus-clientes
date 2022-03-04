@@ -18,6 +18,7 @@ export function Filter({ open, onClose }: FilterProps) {
         secondaryButtonText="Filtrar"
         open={open}
         onClose={onClose}
+        hasDivider
     />
 }
 

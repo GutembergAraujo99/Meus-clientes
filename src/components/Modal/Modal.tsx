@@ -1,21 +1,27 @@
 import { Button, Dialog, DialogActions, DialogContent, DialogTitle, Divider, IconButton } from '@material-ui/core';
 import CloseIcon from '@material-ui/icons/Close';
+import EditIcon from '@material-ui/icons/Edit';
+import WarningIcon from '@material-ui/icons/Warning';
 import clsx from 'clsx';
 import React from 'react';
 import './Modal.scss';
 
 interface ModalProps {
     title: string
+    hasAlert?: boolean
+    hasDivider?: boolean
+    hasEdition?: boolean
     closeIcon?: boolean
     content: JSX.Element
     defaultButtonText?: string
     secondaryButtonText?: string
     open: boolean
     className?: string
+    onOpenEdition?: () => void
     onClose: () => void
 }
 
-export function Modal({ title, closeIcon, content, defaultButtonText, secondaryButtonText, open, className, onClose }: ModalProps) {
+export function Modal({ title, hasAlert, hasDivider, hasEdition, closeIcon, content, defaultButtonText, secondaryButtonText, open, className, onOpenEdition, onClose }: ModalProps) {
     return <Dialog
         open={open}
         keepMounted
@@ -23,14 +29,34 @@ export function Modal({ title, closeIcon, content, defaultButtonText, secondaryB
         onClose={onClose}
     >
         <DialogTitle>
-            <span className="ModalTitle">{title}</span>
-            {closeIcon
-                ? <IconButton onClick={onClose} className="ModalCloseButton">
-                    <CloseIcon />
-                </IconButton>
-                : <></>
-            }
-            <Divider />
+            <div className="ModalHeader">
+                <div className="ModalTitle">
+                    {title}
+                    {hasAlert
+                        ? <span className="ModalAlertIcon">
+                            <IconButton>
+                                <WarningIcon color="warning" />
+                            </IconButton>
+                        </span>
+                        : <></>
+                    }
+                </div>
+                <div className="ModalActionIcons">
+                    {hasEdition
+                        ? <IconButton onClick={onOpenEdition}>
+                            <EditIcon />
+                        </IconButton>
+                        : <></>
+                    }
+                    {closeIcon
+                        ? <IconButton onClick={onClose}>
+                            <CloseIcon />
+                        </IconButton>
+                        : <></>
+                    }
+                </div>
+            </div>
+            {hasDivider ? <Divider /> : <></>}
         </DialogTitle>
         <DialogContent className={clsx("ModalContent", className)}>{content}</DialogContent>
         {defaultButtonText !== undefined && secondaryButtonText !== undefined

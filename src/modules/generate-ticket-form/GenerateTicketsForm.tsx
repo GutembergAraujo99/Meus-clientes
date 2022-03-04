@@ -1,7 +1,8 @@
-import { Alert, Button, Checkbox, FormControl, FormControlLabel, FormGroup, InputLabel, MenuItem, Select, SelectChangeEvent, TextField } from '@material-ui/core';
+import { Alert, Button, Checkbox, FormControlLabel, FormGroup, SelectChangeEvent, TextField } from '@material-ui/core';
 import * as React from 'react';
-import { v4 as uuid } from 'uuid';
+import { ComboBox } from '../../components/ComboBox/ComboBox';
 import { Modal } from '../../components/Modal/Modal';
+import { items } from '../../mock/GenerateTicketsForm.mock';
 import './GenerateTicketForm.scss';
 
 interface GenerateTicketFormProps {
@@ -17,6 +18,7 @@ export function GenerateTicketForm({ open, onClose }: GenerateTicketFormProps) {
         secondaryButtonText="Gerar"
         open={open}
         onClose={onClose}
+        hasDivider
     />
 }
 
@@ -27,36 +29,28 @@ function GenerateTicketFormContent() {
     return <div className="GenerateTicketForm">
         <div className="GenerateTicketFormAdjustSelect">
             <div>
-                <FormControl size="small" fullWidth>
-                    <InputLabel>Grupo evento</InputLabel>
-                    <Select
-                        id={uuid()}
+                {items.map((item, index) => {
+                    return <ComboBox
+                        key={index}
                         value={ticketGroup}
                         label="Grupo evento"
                         onChange={onChangeEventGroup}
+                        items={item.ticket.group}
                         className="GenerateTicketFormGroupEvent"
-                    >
-                        <MenuItem value={1}>Grupo evento 1</MenuItem>
-                        <MenuItem value={2}>Grupo evento 2</MenuItem>
-                        <MenuItem value={3}>Grupo evento 3</MenuItem>
-                    </Select>
-                </FormControl>
+                    />
+                })}
             </div>
             <div>
-                <FormControl size="small" fullWidth>
-                    <InputLabel>Tipo evento</InputLabel>
-                    <Select
-                        id={uuid()}
+                {items.map((item, index) => {
+                    return <ComboBox
+                        key={index}
                         value={eventType}
                         label="Tipo evento"
                         onChange={onChangeEventType}
+                        items={item.ticket.type}
                         className="GenerateTicketFormEventType"
-                    >
-                        <MenuItem value={1}>Tipo evento 1</MenuItem>
-                        <MenuItem value={2}>Tipo evento 2</MenuItem>
-                        <MenuItem value={3}>Tipo evento 3</MenuItem>
-                    </Select>
-                </FormControl>
+                    />
+                })}
             </div>
         </div>
         <div className="GenerateTicketFormAlert">

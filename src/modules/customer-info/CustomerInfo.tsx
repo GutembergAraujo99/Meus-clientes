@@ -15,14 +15,18 @@ import './CustomerInfo.scss';
 interface CustomerInfoProps {
     open: boolean
     onClose: () => void
+    onOpenEdition: () => void
 }
 
-export function CustomerInfo({ open, onClose }: CustomerInfoProps) {
+export function CustomerInfo({ open, onClose, onOpenEdition }: CustomerInfoProps) {
     return <Modal
         title="Alberto Roberto"
         content={<CustomerInfoContent />}
         open={open}
         onClose={onClose}
+        onOpenEdition={onOpenEdition}
+        hasAlert
+        hasEdition
     />
 }
 
@@ -123,9 +127,18 @@ interface CustomerInfoLastTicketProps {
 }
 
 function CustomerInfoLastTicket({ situation }: CustomerInfoLastTicketProps) {
+
+    const inlineLastTicketStyle = {
+        backgroundColor: situation === 'approved'
+            ? '#2D9600'
+            : situation === 'unapproved'
+                ? '#DB1111'
+                : '#0066CC'
+    }
+
     return <div className="CustomerInfoLastTicket">
         <div className="CustomerInfoLastTicketAdjustItems">
-            <div className="CustomerInfoLastTicketAdjustIcon" style={{ backgroundColor: situation === 'approved' ? '#2D9600' : situation === 'unapproved' ? '#DB1111' : '#0066CC' }}>
+            <div className="CustomerInfoLastTicketAdjustIcon" style={inlineLastTicketStyle}>
                 {situation === 'approved'
                     ? <ThumbUpIcon fontSize="small" />
                     : situation === 'unapproved'

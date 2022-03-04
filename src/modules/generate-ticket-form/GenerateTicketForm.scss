@@ -4,16 +4,16 @@
     margin-top: 16px;
     &AdjustSelect {
         display: flex;
+        justify-content: space-between;
         align-items: center;
     }
 
     &GroupEvent {
-        width: 268.47px;
-        margin-right: 16px;
+        width: 260px;
     }
 
     &EventType {
-        width: 268.47px;
+        width: 260px;
     }
 
     &Alert {
