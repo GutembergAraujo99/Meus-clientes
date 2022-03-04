@@ -1,9 +1,21 @@
 @import "../../../scss/variables";
 
+@mixin FontTitle() {
+    font-family: $font-family;
+    font-weight: 500;
+    font-size: 16px;
+    letter-spacing: 0.1px;
+    color: $font-title-color;
+}
+
+@mixin FlexWrapContent() {
+    display: flex;
+    flex-wrap: wrap;
+}
+
 .TicketFilter {
     &AdjustFields {
-        display: flex;
-        flex-wrap: wrap;
+        @include FlexWrapContent();
         margin: 16px 0px;
     }
 
@@ -38,16 +50,33 @@
 
 .TicketFilterLostSalesInPeriod {
     &Label {
-        font-family: $font-family;
-        font-weight: 500;
-        font-size: 16px;
-        letter-spacing: 0.1px;
-        color: $font-title-color;
+        @include FontTitle();
     }
 
     &AdjustFields {
-        display: flex;
-        flex-wrap: wrap;
+        @include FlexWrapContent();
+    }
+
+    &AdjustField {
+        margin-right: 16px;
+    }
+
+    &StartDate {
+        width: 190px;
+    }
+
+    &EndDate {
+        width: 190px;
+    }
+}
+
+.TicketFilterSuccessfulSalesInPeriod {
+    &Label {
+        @include FontTitle();
+    }
+
+    &AdjustFields {
+        @include FlexWrapContent();
     }
 
     &AdjustField {

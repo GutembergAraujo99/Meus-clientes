@@ -1,7 +1,7 @@
 import { Popover } from '@material-ui/core';
 import React from 'react';
 import { v4 as uuid } from 'uuid';
-import { contents } from '../mock/Popover.mock';
+import { contents } from '../../mock/Popover.mock';
 import './Popover.scss';
 
 export type ContentType = "lgpd" | "tickets" | "dates" | undefined;

@@ -1,7 +1,8 @@
-import { FormControl, InputLabel, MenuItem, Select, SelectChangeEvent, TextField } from '@material-ui/core';
+import { SelectChangeEvent, TextField } from '@material-ui/core';
 import * as React from 'react';
-import { v4 as uuid } from 'uuid';
-import { SimpleDatePicker } from '../../../components/DatePicker';
+import { ComboBox } from '../../../components/ComboBox/ComboBox';
+import { SimpleDatePicker } from '../../../components/DatePicker/DatePicker';
+import { customerFilterItems } from '../../../mock/Filter.mock';
 import './CustomerFilter.scss';
 
 export function CustomerFilter() {
@@ -23,82 +24,70 @@ export function CustomerFilter() {
                 <TextField variant="outlined" size="small" placeholder="Telefone" className="CustomerFilterAdjustPhone" />
             </div>
             <div className="CustomerFilterAdjustField">
-                <FormControl size="small" className="CustomerFilterAdjustPersonType">
-                    <InputLabel>Tipo pessoa</InputLabel>
-                    <Select
-                        id={uuid()}
-                        value={personType}
+                {customerFilterItems.map((item, index) => {
+                    return <ComboBox
+                        key={index}
                         label="Tipo pessoa"
+                        value={personType}
                         onChange={onChangePersonType}
-                    >
-                        <MenuItem value={1}>Pessoa Física</MenuItem>
-                        <MenuItem value={2}>Pessoa Jurídica</MenuItem>
-                    </Select>
-                </FormControl>
+                        items={item.customer.personType}
+                        className="CustomerFilterAdjustPersonType"
+                    />
+                })}
             </div>
             <div className="CustomerFilterAdjustField">
                 <TextField variant="outlined" size="small" placeholder="CPF" className="CustomerFilterAdjustCpf" />
             </div>
             <div className="CustomerFilterAdjustField">
-                <FormControl size="small" className="CustomerFilterAdjustSource">
-                    <InputLabel>Origem</InputLabel>
-                    <Select
-                        id={uuid()}
-                        value={source}
+                {customerFilterItems.map((item, index) => {
+                    return <ComboBox
+                        key={index}
                         label="Origem"
+                        value={source}
                         onChange={onChangeSource}
-                    >
-                        <MenuItem value={1}>Loja</MenuItem>
-                        <MenuItem value={2}>Internet</MenuItem>
-                    </Select>
-                </FormControl>
+                        items={item.customer.source}
+                        className="CustomerFilterAdjustSource"
+                    />
+                })}
             </div>
             <div className="CustomerFilterAdjustField">
-                <FormControl size="small" className="CustomerFilterAdjustGender">
-                    <InputLabel>Sexo</InputLabel>
-                    <Select
-                        id={uuid()}
-                        value={gender}
+                {customerFilterItems.map((item, index) => {
+                    return <ComboBox
+                        key={index}
                         label="Sexo"
+                        value={gender}
                         onChange={onChangeGender}
-                    >
-                        <MenuItem value={1}>Masculino</MenuItem>
-                        <MenuItem value={2}>Feminino</MenuItem>
-                    </Select>
-                </FormControl>
+                        items={item.customer.gender}
+                        className="CustomerFilterAdjustGender"
+                    />
+                })}
             </div>
             <div className="CustomerFilterAdjustField">
-                <FormControl size="small" className="CustomerFilterAdjustCustomerType">
-                    <InputLabel>Tipo de cliente</InputLabel>
-                    <Select
-                        id={uuid()}
-                        value={customerType}
+                {customerFilterItems.map((item, index) => {
+                    return <ComboBox
+                        key={index}
                         label="Tipo de cliente"
+                        value={customerType}
                         onChange={onChangeCustomerType}
-                    >
-                        <MenuItem value={1}>Tipo de cliente 1</MenuItem>
-                        <MenuItem value={2}>Tipo de cliente 2</MenuItem>
-                        <MenuItem value={3}>Tipo de cliente 3</MenuItem>
-                    </Select>
-                </FormControl>
+                        items={item.customer.type}
+                        className="CustomerFilterAdjustCustomerType"
+                    />
+                })}
             </div>
             <div className="CustomerFilterAdjustField">
                 <SimpleDatePicker label="Data Aniversário" className="CustomerFilterAdjustBirthday" />
             </div>
             <div className="CustomerFilterAdjustField">
-                <FormControl size="small" className="CustomerFilterAdjustOccupationArea">
-                    <InputLabel>Área de atuação</InputLabel>
-                    <Select
-                        id={uuid()}
-                        value={occupationArea}
+                {customerFilterItems.map((item, index) => {
+                    return <ComboBox
+                        key={index}
                         label="Área de atuação"
+                        value={occupationArea}
                         onChange={onChangeOccupationArea}
-                    >
-                        <MenuItem value={1}>Área de atuação 1</MenuItem>
-                        <MenuItem value={2}>Área de atuação 2</MenuItem>
-                        <MenuItem value={3}>Área de atuação 3</MenuItem>
-                    </Select>
-                </FormControl>
+                        items={item.customer.occupationArea}
+                        className="CustomerFilterAdjustOccupationArea"
+                    />
+                })}
             </div>
         </div>
         <div>
@@ -142,49 +131,40 @@ function CustomerFilterAddress() {
                 <TextField variant="outlined" size="small" placeholder="Bairro" className="CustomerFilterAddressAdjustDistrict" />
             </div>
             <div className="CustomerFilterAddressAdjustField">
-                <FormControl size="small" className="CustomerFilterAddressAdjustCity">
-                    <InputLabel>Cidade</InputLabel>
-                    <Select
-                        id={uuid()}
-                        value={city}
+                {customerFilterItems.map((item, index) => {
+                    return <ComboBox
+                        key={index}
                         label="Cidade"
+                        value={city}
                         onChange={onChangeCity}
-                    >
-                        <MenuItem value={1}>Salto</MenuItem>
-                        <MenuItem value={2}>Montenegro</MenuItem>
-                        <MenuItem value={3}>Rio de Janeiro</MenuItem>
-                    </Select>
-                </FormControl>
+                        items={item.customer.address.city}
+                        className="CustomerFilterAddressAdjustCity"
+                    />
+                })}
             </div>
             <div className="CustomerFilterAddressAdjustField">
-                <FormControl size="small" className="CustomerFilterAddressAdjustState">
-                    <InputLabel>Estado</InputLabel>
-                    <Select
-                        id={uuid()}
-                        value={state}
+                {customerFilterItems.map((item, index) => {
+                    return <ComboBox
+                        key={index}
                         label="Estado"
+                        value={state}
                         onChange={onChangeState}
-                    >
-                        <MenuItem value={1}>SP</MenuItem>
-                        <MenuItem value={2}>RS</MenuItem>
-                        <MenuItem value={3}>RJ</MenuItem>
-                    </Select>
-                </FormControl>
+                        items={item.customer.address.state}
+                        className="CustomerFilterAddressAdjustState"
+                    />
+                })}
             </div>
             <div className="CustomerFilterAddressAdjustField">
-                <FormControl size="small" className="CustomerFilterAddressAdjustCountry">
-                    <InputLabel>País</InputLabel>
-                    <Select
-                        id={uuid()}
-                        value={country}
+                {customerFilterItems.map((item, index) => {
+                    return <ComboBox
+                        key={index}
                         label="País"
+                        value={country}
                         onChange={onChangeCountry}
-                    >
-                        <MenuItem value={1}>Brasil</MenuItem>
-                        <MenuItem value={2}>Estados Unidos</MenuItem>
-                        <MenuItem value={3}>Espanha</MenuItem>
-                    </Select>
-                </FormControl>
+                        items={item.customer.address.country}
+                        className="CustomerFilterAddressAdjustCountry"
+                    />
+                })}
             </div>
             <div className="CustomerFilterAddressAdjustField">
                 <TextField variant="outlined" size="small" placeholder="CEP" className="CustomerFilterAddressAdjustCep" />

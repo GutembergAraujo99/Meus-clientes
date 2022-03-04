@@ -3,8 +3,8 @@ import AddCircleIcon from '@material-ui/icons/AddCircle';
 import * as React from 'react';
 import InputMask from 'react-input-mask';
 import { v4 as uuid } from 'uuid';
-import { SimpleDatePicker } from '../../components/DatePicker';
-import { Modal } from '../../components/Modal';
+import { SimpleDatePicker } from '../../components/DatePicker/DatePicker';
+import { Modal } from '../../components/Modal/Modal';
 import './CustomerRegisterForm.scss';
 
 interface CustomerRegisterFormProps {

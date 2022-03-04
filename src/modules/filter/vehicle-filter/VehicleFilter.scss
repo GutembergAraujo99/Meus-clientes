@@ -1,0 +1,49 @@
+@import "../../../scss/variables";
+
+.VehicleFilter {
+    &AdjustFields {
+        display: flex;
+        flex-wrap: wrap;
+        margin: 16px 0px;
+    }
+    
+    &AdjustField {
+        margin: 0px 16px 16px 0px;
+    }
+
+    &Brand {
+        width: 190px;
+    }
+
+    &Model {
+        width: 190px;
+    }
+
+    &Version {
+        width: 190px;
+    }
+
+    &ModelYear {
+        width: 190px;
+    }
+
+    &Plate {
+        width: 190px;
+    }
+
+    &HasVehicle {
+        width: 190px;
+    }
+
+    &Chassis {
+        width: 395px;
+    }
+
+    &SaleDate {
+        width: 190px;
+    }
+
+    &InvoiceDate {
+        width: 190px;
+    }
+}

@@ -6,11 +6,11 @@ interface ComboBoxProps {
     className?: string
     label: string
     value: string
-    item: string
+    items: Array<string>
     onChange: (event: SelectChangeEvent<string>) => void
 }
 
-export function ComboBox({ className, label, value, item, onChange }: ComboBoxProps) {
+export function ComboBox({ className, label, value, items, onChange }: ComboBoxProps) {
     return <FormControl size="small" className={className}>
         <InputLabel>{label}</InputLabel>
         <Select
@@ -19,7 +19,7 @@ export function ComboBox({ className, label, value, item, onChange }: ComboBoxPr
             label={label}
             onChange={onChange}
         >
-            <MenuItem value={1}>{item}</MenuItem>
+            {items.map((item, index) => <MenuItem key={index} value={index}>{item}</MenuItem>)}
         </Select>
     </FormControl>
 }

@@ -1,7 +1,8 @@
 import { SelectChangeEvent, TextField } from '@material-ui/core';
 import * as React from 'react';
-import { ComboBox } from '../../../components/ComboBox';
-import { SimpleDatePicker } from '../../../components/DatePicker';
+import { ComboBox } from '../../../components/ComboBox/ComboBox';
+import { SimpleDatePicker } from '../../../components/DatePicker/DatePicker';
+import { ticketFilterItems } from '../../../mock/Filter.mock';
 import './TicketFilter.scss';
 
 export function TicketFilter() {
@@ -15,13 +16,16 @@ export function TicketFilter() {
                 <TextField variant="outlined" size="small" placeholder="N° do evento" className="TicketFilterAdjustTicketNumber" />
             </div>
             <div className="TicketFilterAdjustField">
-                <ComboBox
-                    label="Tipo de data"
-                    value={dateType}
-                    item={'Tipo de data 1'}
-                    onChange={onChangeDateType}
-                    className="TicketFilterAdjustDateType"
-                />
+                {ticketFilterItems.map((item, index) => {
+                    return <ComboBox
+                        key={index}
+                        label="Tipo de data"
+                        value={dateType}
+                        items={item.ticket.type}
+                        onChange={onChangeDateType}
+                        className="TicketFilterAdjustDateType"
+                    />
+                })}
             </div>
             <div className="TicketFilterAdjustField">
                 <SimpleDatePicker label="Data início" className="TicketFilterAdjustStartDate" />
@@ -30,25 +34,32 @@ export function TicketFilter() {
                 <SimpleDatePicker label="Data fim" className="TicketFilterAdjustEndDate" />
             </div>
             <div className="TicketFilterAdjustField">
-                <ComboBox
-                    label="Origem"
-                    value={source}
-                    item={'Internet'}
-                    onChange={onChangeSource}
-                    className="TicketFilterAdjustSource"
-                />
+                {ticketFilterItems.map((item, index) => {
+                    return <ComboBox
+                        key={index}
+                        label="Origem"
+                        value={source}
+                        items={item.ticket.source}
+                        onChange={onChangeSource}
+                        className="TicketFilterAdjustSource"
+                    />
+                })}
             </div>
             <div className="TicketFilterAdjustField">
-                <ComboBox
-                    label="Mídia"
-                    value={media}
-                    item={'Facebook'}
-                    onChange={onChangeMedia}
-                    className="TicketFilterAdjustMedia"
-                />
+                {ticketFilterItems.map((item, index) => {
+                    return <ComboBox
+                        key={index}
+                        label="Mídia"
+                        value={media}
+                        items={item.ticket.media}
+                        onChange={onChangeMedia}
+                        className="TicketFilterAdjustMedia"
+                    />
+                })}
             </div>
         </div>
         <TicketFilterLostSalesInPeriod />
+        <TicketFilterSuccessfulSalesInPeriod />
     </div>
 
     function onChangeDateType(event: SelectChangeEvent<string>) {
@@ -75,6 +86,22 @@ function TicketFilterLostSalesInPeriod() {
             </div>
             <div className="TicketFilterLostSalesInPeriodAdjustField">
                 <SimpleDatePicker label="Data fim" className="TicketFilterLostSalesInPeriodEndDate" />
+            </div>
+        </div>
+    </div>
+}
+
+function TicketFilterSuccessfulSalesInPeriod() {
+    return <div className="TicketFilterSuccessfulSalesInPeriod">
+        <p className="TicketFilterSuccessfulSalesInPeriodLabel">
+            Vendas no período
+        </p>
+        <div className="TicketFilterSuccessfulSalesInPeriodAdjustFields">
+            <div className="TicketFilterSuccessfulSalesInPeriodAdjustField">
+                <SimpleDatePicker label="Data início" className="TicketFilterSuccessfulSalesInPeriodStartDate" />
+            </div>
+            <div className="TicketFilterSuccessfulSalesInPeriodAdjustField">
+                <SimpleDatePicker label="Data fim" className="TicketFilterSuccessfulSalesInPeriodEndDate" />
             </div>
         </div>
     </div>

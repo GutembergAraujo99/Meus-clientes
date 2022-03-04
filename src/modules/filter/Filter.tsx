@@ -1,9 +1,9 @@
 import { Divider, Tab, Tabs } from '@material-ui/core';
 import * as React from 'react';
-import { Modal } from '../../components/Modal';
+import { Modal } from '../../components/Modal/Modal';
 import { CustomerFilter } from './customer-filter/CustomerFilter';
-import { TicketFilter } from './TicketFilter/TicketFilter';
-import { VehicleFilter } from './VehicleFilter/VehicleFilter';
+import { TicketFilter } from './ticket-filter/TicketFilter';
+import { VehicleFilter } from './vehicle-filter/VehicleFilter';
 
 interface FilterProps {
     open: boolean
@@ -52,7 +52,6 @@ function FilterContent() {
         setValue(newValue);
     }
 }
-
 
 interface TabPanelProps {
     children?: React.ReactNode

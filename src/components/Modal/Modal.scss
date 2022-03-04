@@ -1,4 +1,4 @@
-@import "../scss/variables";
+@import "../../scss/variables";
 
 .Modal {
     &Title {
@@ -14,6 +14,10 @@
         top: 5px;
         right: 8px;
         color: #606060;
+    }
+
+    &Content {
+        min-height: 430px;
     }
 
     &Footer {

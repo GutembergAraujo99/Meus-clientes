@@ -9,13 +9,14 @@ import ListIcon from '@material-ui/icons/List';
 import PersonAddIcon from '@material-ui/icons/PersonAdd';
 import React, { ReactNode, useState } from 'react';
 import { v4 as uuid } from 'uuid';
-import { items } from '../mock/Card.mock';
-import { CustomerRegisterForm } from '../modules/customer-register-form/CustomerRegisterForm';
-import { Filter } from '../modules/filter/Filter';
-import { GenerateTicketForm } from '../modules/generate-ticket-form/GenerateTicketsForm';
-import { ActionButton } from './ActionButton';
+import { items } from '../../mock/Card.mock';
+import { CustomerInfo } from '../../modules/customer-info/CustomerInfo';
+import { CustomerRegisterForm } from '../../modules/customer-register-form/CustomerRegisterForm';
+import { Filter } from '../../modules/filter/Filter';
+import { GenerateTicketForm } from '../../modules/generate-ticket-form/GenerateTicketsForm';
+import { ActionButton } from '../ActionButton/ActionButton';
+import { ContentType, CustomPopover } from '../Popover/Popover';
 import './Card.scss';
-import { ContentType, CustomPopover } from './Popover';
 
 export type IconType = OverridableComponent<SvgIconTypeMap<{}, "svg">> & {
     muiName: string;
@@ -57,17 +58,12 @@ function CardHeader() {
 }
 
 function CardBody() {
-
-    const [checked, setChecked] = useState(false);
-    const [open, setOpen] = useState(false);
+    const [openGenerateTicketForm, setOpenGenerateTicketForm] = useState(false);
+    const [openCustomerInfo, setOpenCustomerInfo] = useState(false);
 
     return <div>
         <div className="CardTitle">
-            <Checkbox
-                color="secondary"
-                checked={checked}
-                onChange={handleSelectAll}
-            />
+            <Checkbox color="secondary" />
             <div className="CardTitleItems">
                 <h4 className="CardTitleAdjustCustomerName">Nome do cliente</h4>
                 <h4 className="CardTitleAdjustLastPurchase">Data última compra</h4>
@@ -75,11 +71,11 @@ function CardBody() {
                 <h4 className="CardTitleAdjustFleetLabel">Frota</h4>
                 <ActionButton icon={<ListIcon />} text="Gerar evento" onClick={onOpenGenerateTicket} />
             </div>
-            <GenerateTicketForm open={open} onClose={onCloseGenerateTicket} />
+            <GenerateTicketForm open={openGenerateTicketForm} onClose={onCloseGenerateTicket} />
         </div>
         <div className="CardContent">
             {items.map(item => <div key={item.id} className="CardItem">
-                <Checkbox color="secondary" checked={checked} onChange={handleSelect} />
+                <Checkbox color="secondary" />
                 <div className="CardItemAdjustItems">
                     <Tooltip title={item.customerName} placement="bottom-start">
                         <div className="CardItemAdjustCustomerName">{item.customerName}</div>
@@ -99,33 +95,35 @@ function CardBody() {
                         type="lgpd"
                         tooltipTitle="Sem restrições"
                         tooltipPlacement="left"
-                        icon={<InfoOutlinedIcon
-                            color={item.hasRestriction ? "warning" : "info"} />}
+                        icon={<InfoOutlinedIcon color={item.hasRestriction ? "warning" : "info"} />}
                     />
                     <ActionIcon type="tickets" tooltipTitle="" icon={<ListIcon />} />
                     <ActionIcon type="dates" tooltipTitle="" icon={<CalendarTodayIcon />} />
                     <ActionIcon tooltipTitle="" icon={<EditIcon />} />
-                    <ActionIcon tooltipTitle="" icon={<FindInPageIcon />} />
+                    <IconButton onClick={onOpenCustomerInfo}>
+                        <FindInPageIcon />
+                    </IconButton>
                 </div>
             </div>
             )}
         </div>
+        <CustomerInfo open={openCustomerInfo} onClose={onCloseCustomerInfo} />
     </div>
 
-    function handleSelect() {
-        // setChecked(!checked);
-    }
-
-    function handleSelectAll(event: React.ChangeEvent<HTMLInputElement>) {
-        setChecked(!checked);
-    }
-
     function onOpenGenerateTicket() {
-        setOpen(true);
+        setOpenGenerateTicketForm(true);
     }
 
     function onCloseGenerateTicket() {
-        setOpen(false);
+        setOpenGenerateTicketForm(false);
+    }
+
+    function onOpenCustomerInfo() {
+        setOpenCustomerInfo(true);
+    }
+
+    function onCloseCustomerInfo() {
+        setOpenCustomerInfo(false);
     }
 }
 

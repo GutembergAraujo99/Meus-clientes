@@ -1,0 +1,140 @@
+@import "../../scss/variables";
+
+.CustomerInfo {
+    &SpacingBetweenInfo {
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+    }
+
+    &AdjustIcons {
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+    }
+
+    &AdjustIconPosition {
+        width: 40px;
+        height: 40px;
+        background-color: #7bc67e;
+        border-radius: 50%;
+        margin-right: 10px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    &Contact {
+        margin-right: 54px;
+
+        &AdjustInfo {
+            display: flex;
+            align-items: center;
+            margin-top: 10px;
+        }
+
+        &AdjustIcon {
+            margin-right: 5px;
+        }
+    }
+
+    &Address {
+        margin-right: 54px;
+
+        &AdjustInfo {
+            display: flex;
+            align-items: center;
+        }
+
+        &AdjustIcon {
+            margin-right: 5px;
+            margin-bottom: 35px;
+        }
+    }
+
+    &Vehicle {
+        &AdjustInfo {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        &AdjustIcon {
+            margin-right: 5px;
+        }
+    }
+
+    &Company {
+        margin-top: 16px;
+
+        &AdjustInfo {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        &AdjustIcon {
+            margin-right: 5px;
+        }
+    }
+
+    &LastTicket {
+        margin-bottom: 5px;
+
+        &AdjustItems {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            height: 32px;
+            background-color: #f4f4f4;
+            border-radius: 8px;
+        }
+
+        &AdjustIcon {
+            display: flex;
+            align-items: center;
+            background-color: #2d9600;
+            border-radius: 8px 0px 0px 8px;
+            color: #fff;
+            padding: 5px;
+            margin-right: 5px;
+        }
+
+        &AdjustItems {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        &AdjustDescription {
+            display: flex;
+            align-items: center;
+
+            &Number {
+                font-family: $font-family;
+                font-weight: 700;
+                font-size: 14px;
+                color: #0000008a;
+            }
+
+            &Name {
+                margin-left: 10px;
+                color: #0000008a;
+            }
+        }
+
+        &AdjustLastTicketDate {
+            &Container {
+                display: flex;
+                align-items: center;
+                padding-right: 10px;
+                color: #0000008a;
+            }
+
+            &Content {
+                margin-left: 5px;
+            }
+        }
+    }
+}

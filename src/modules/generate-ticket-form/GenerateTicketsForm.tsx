@@ -1,7 +1,7 @@
 import { Alert, Button, Checkbox, FormControl, FormControlLabel, FormGroup, InputLabel, MenuItem, Select, SelectChangeEvent, TextField } from '@material-ui/core';
 import * as React from 'react';
 import { v4 as uuid } from 'uuid';
-import { Modal } from '../../components/Modal';
+import { Modal } from '../../components/Modal/Modal';
 import './GenerateTicketForm.scss';
 
 interface GenerateTicketFormProps {
