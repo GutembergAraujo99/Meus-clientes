@@ -18,11 +18,12 @@ interface ActionButtonProps {
     icon?: IconType | ReactNode;
     disabled?: boolean;
     variant?: "text" | "outlined" | "contained" | undefined;
+    size?: "large" | "medium" | "small" | undefined;
     onClick: React.MouseEventHandler<HTMLButtonElement> | undefined;
 }
 
-export function ActionButton({ color, text, icon, disabled, variant, onClick }: ActionButtonProps) {
-    return <CustomButton variant={variant || "contained"} color={color} onClick={onClick} disabled={disabled}>
+export function ActionButton({ color, text, icon, disabled, variant, size, onClick }: ActionButtonProps) {
+    return <CustomButton variant={variant || "contained"} size={size} color={color} onClick={onClick} disabled={disabled}>
         {icon}
         <span className={text && icon ? 'AdjustIconAndTextPosition' : undefined}>{text}</span>
     </CustomButton>

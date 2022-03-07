@@ -1,6 +1,20 @@
 @import "../../scss/variables";
 
+@mixin CustomFont($font-weight, $font-size, $letter-spacing) {
+    font-family: $font-family;
+    font-weight: $font-weight;
+    font-size: $font-size;
+    letter-spacing: $letter-spacing;
+    color: $font-title-color;
+}
+
 .CustomerInfo {
+    &Content {
+        &Title {
+            @include CustomFont(500, 16px, 0.1px);
+        }
+    }
+
     &SpacingBetweenInfo {
         display: flex;
         justify-content: space-between;
@@ -27,6 +41,14 @@
     &Contact {
         margin-right: 54px;
 
+        &Title {
+            @include CustomFont(500, 16px, 0.1px);
+        }
+
+        &Label {
+            @include CustomFont(400, 14px, 0.15px);
+        }
+
         &AdjustInfo {
             display: flex;
             align-items: center;
@@ -41,6 +63,14 @@
     &Address {
         margin-right: 54px;
 
+        &Title {
+            @include CustomFont(500, 16px, 0.1px);
+        }
+
+        &Label {
+            @include CustomFont(400, 14px, 0.15px);
+        }
+
         &AdjustInfo {
             display: flex;
             align-items: center;
@@ -53,6 +83,14 @@
     }
 
     &Vehicle {
+        &Title {
+            @include CustomFont(500, 16px, 0.1px);
+        }
+
+        &Label {
+            @include CustomFont(400, 14px, 0.15px);
+        }
+
         &AdjustInfo {
             display: flex;
             align-items: center;
@@ -66,6 +104,14 @@
 
     &Company {
         margin-top: 16px;
+
+        &Title {
+            @include CustomFont(500, 16px, 0.1px);
+        }
+
+        &Label {
+            @include CustomFont(400, 14px, 0.15px);
+        }
 
         &AdjustInfo {
             display: flex;

@@ -1,51 +1,52 @@
 import { Popover } from '@material-ui/core';
 import React from 'react';
 import { v4 as uuid } from 'uuid';
-import { contents } from '../../mock/Popover.mock';
 import './Popover.scss';
 
 export type ContentType = "lgpd" | "tickets" | "dates" | undefined;
 
-interface PopoverProps {
-    id?: string;
-    open: boolean;
-    anchorEl?: Element | ((element: Element) => Element) | null | undefined;
-    contentType: ContentType;
-    onClose: () => void;
+interface CustomPopoverProps {
+    content: JSX.Element
 }
 
-export function CustomPopover({ id, open, anchorEl, contentType, onClose }: PopoverProps) {
-    return <Popover
-        id={id}
-        open={open}
-        anchorEl={anchorEl}
-        onClose={onClose}
-        anchorOrigin={{ vertical: 'bottom', horizontal: 'left' }}
-        transformOrigin={{ vertical: 'top', horizontal: 'right' }}
-        elevation={3}
-    >
-        <PopoverContent type={contentType} />
-    </Popover>
-}
+export function CustomPopover({ content }: CustomPopoverProps) {
+    const [anchorEl, setAnchorEl] = React.useState<HTMLElement | null>(null);
+    const open = Boolean(anchorEl);
 
-interface PopoverContentProps {
-    type: ContentType;
-}
-
-function PopoverContent({ type }: PopoverContentProps) {
-    return <div className="PopoverContainer">
-        {contents.map(content => <div key={content.type}>
-            {content.type === type
-                ? <div>
-                    <h4 className="PopoverTitle">{content.title}</h4>
-                    <hr className="PopoverDivider" />
-                    {content.descriptions.map(description => {
-                        return <div key={uuid()} className="PopoverContent">{description}</div>
-                    })}
-                </div>
-                : <></>
-            }
+    return <div>
+        <div className="PopoverContainer" onMouseEnter={handlePopoverOpen} onMouseLeave={handlePopoverClose}>
+            {content}
         </div>
-        )}
+        <Popover
+            id={uuid()}
+            open={open}
+            anchorEl={anchorEl}
+            anchorOrigin={{ vertical: 'top', horizontal: 'left' }}
+            transformOrigin={{ vertical: 'top', horizontal: 'right' }}
+            onClose={handlePopoverClose}
+            disableRestoreFocus
+            className="Popover"
+        >
+            <div className="PopoverFrame">
+                <p className="PopoverTitle">Histórico de eventos</p>
+                <p className="PopoverContent">
+                    <b>103327</b> - Oportunidade / Novos - Em andamento
+                </p>
+                <p className="PopoverContent">
+                    <b>103327</b> - Oportunidade / Novos - Em andamento
+                </p>
+                <p className="PopoverContent">
+                    <b>103327</b> - Oportunidade / Novos - Em andamento
+                </p>
+            </div>
+        </Popover>
     </div>
+
+    function handlePopoverOpen(event: React.MouseEvent<HTMLElement>) {
+        setAnchorEl(event.currentTarget);
+    }
+
+    function handlePopoverClose() {
+        setAnchorEl(null);
+    }
 }

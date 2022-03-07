@@ -40,7 +40,7 @@ function CustomerInfoContent() {
             <CustomerInfoCompany />
         </div>
         <div>
-            <p>Últimos eventos</p>
+            <p className="CustomerInfoContentTitle">Últimos eventos</p>
             <CustomerInfoLastTicket situation="approved" />
             <CustomerInfoLastTicket situation="unapproved" />
             <CustomerInfoLastTicket situation="waiting" />
@@ -67,28 +67,28 @@ function CustomerInfoDetails() {
 
 function CustomerInfoContact() {
     return <div className="CustomerInfoContact">
-        <p>Contatos</p>
+        <p className="CustomerInfoContactTitle">Contatos</p>
         <div className="CustomerInfoContactAdjustInfo">
             <LocalPhoneIcon color="action" className="CustomerInfoContactAdjustIcon" />
-            <span>(51) 99999-9999</span>
+            <span className="CustomerInfoContactLabel">(51) 99999-9999</span>
         </div>
         <div className="CustomerInfoContactAdjustInfo">
             <LocalPhoneIcon color="action" className="CustomerInfoContactAdjustIcon" />
-            <span>(51) 3632-9999</span>
+            <span className="CustomerInfoContactLabel">(51) 3632-9999</span>
         </div>
         <div className="CustomerInfoContactAdjustInfo">
             <EmailIcon color="action" className="CustomerInfoContactAdjustIcon" />
-            <span>bruno.moreira@syonet.com</span>
+            <span className="CustomerInfoContactLabel">bruno.moreira@syonet.com</span>
         </div>
     </div>
 }
 
 function CustomerInfoAddress() {
     return <div className="CustomerInfoAddress">
-        <p>Endereço</p>
+        <p className="CustomerInfoAddressTitle">Endereço</p>
         <div className="CustomerInfoAddressAdjustInfo">
             <RoomIcon color="action" className="CustomerInfoAddressAdjustIcon" />
-            <span>
+            <span className="CustomerInfoAddressLabel">
                 Rua Buarque de Macedo, 93<br />
                 Centro - Montenegro<br />
                 CEP: 925120-300
@@ -99,24 +99,24 @@ function CustomerInfoAddress() {
 
 function CustomerInfoVehicle() {
     return <div className="CustomerInfoVehicle">
-        <p>Veículos(2)</p>
+        <p className="CustomerInfoVehicleTitle">Veículos (2)</p>
         <div className="CustomerInfoVehicleAdjustInfo">
             <DirectionsCarIcon color="action" className="CustomerInfoVehicleAdjustIcon" />
-            <span>Polo / Highline 200 TSI - 2019/2019</span>
+            <span className="CustomerInfoVehicleLabel">Polo / Highline 200 TSI - 2019/2019</span>
         </div>
         <div className="CustomerInfoVehicleAdjustInfo">
             <DirectionsCarIcon color="action" className="CustomerInfoVehicleAdjustIcon" />
-            <span>Gol / Confort - 2016/2017</span>
+            <span className="CustomerInfoVehicleLabel">Gol / Confort - 2016/2017</span>
         </div>
     </div>
 }
 
 function CustomerInfoCompany() {
     return <div className="CustomerInfoCompany">
-        <p>Empresa(s) do cliente</p>
+        <p className="CustomerInfoCompanyTitle">Empresa(s) do cliente</p>
         <div className="CustomerInfoCompanyAdjustInfo">
             <BusinessIcon color="action" className="CustomerInfoCompanyAdjustIcon" />
-            <span>Hyundai de NH</span>
+            <span className="CustomerInfoCompanyLabel">Hyundai de NH</span>
         </div>
     </div>
 }

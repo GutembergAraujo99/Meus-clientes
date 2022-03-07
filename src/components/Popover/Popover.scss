@@ -1,29 +1,30 @@
 @import "../../scss/variables";
 
+@mixin CustomFont($font-size, $font-weight, $color) {
+    font-family: $font-family;
+    font-weight: $font-weight;
+    font-size: $font-size;
+    letter-spacing: 0.15px;
+    color: $color;
+}
+
 .Popover {
+    pointer-events: none;
+
     &Container {
+        display: flex;
+        align-items: center;
+    }
+
+    &Frame {
         padding: 16px;
     }
 
     &Title {
-        font-family: $font-family;
-        font-weight: 700;
-        font-size: 16px;
-        letter-spacing: 0.15px;
-        color: $font-title-color;
-    }
-
-    &Divider {
-        height: 1px;
-        background-color: #ccc;
-        border: none;
+        @include CustomFont(16px, 700, $font-title-color);
     }
 
     &Content {
-        background-color: #ffffff;
-        box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.25);
-        border-radius: 4px;
-        padding: 8px;
-        margin-top: 10px;
+        @include CustomFont(14px, 400, $black);
     }
 }

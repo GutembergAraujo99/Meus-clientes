@@ -1,0 +1,15 @@
+@import "../../scss/variables";
+
+.CustomerListing {
+    &Table {
+        min-width: 750px;
+
+        &Head {
+            white-space: nowrap;
+        }
+
+        &Container {
+            max-height: calc(100vh - 250px);
+        }
+    }
+}
