@@ -27,4 +27,15 @@
     &Content {
         @include CustomFont(14px, 400, $black);
     }
+
+    &SubContent {
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 10px;
+
+        &Title {
+            @include CustomFont(14px, 400, $font-subtitle-color);
+            margin-bottom: 5px;
+        }
+    }
 }

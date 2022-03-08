@@ -1,7 +1,6 @@
 import { Checkbox, IconButton, Table, TableBody, TableCell, TableContainer, TableHead, TablePagination, TableRow, Tooltip } from '@material-ui/core';
 import CalendarTodayIcon from '@material-ui/icons/CalendarToday';
 import EditIcon from '@material-ui/icons/Edit';
-import FilterListIcon from '@material-ui/icons/FilterList';
 import FindInPageIcon from '@material-ui/icons/FindInPage';
 import FormatListBulletedIcon from '@material-ui/icons/FormatListBulleted';
 import InfoOutlinedIcon from '@material-ui/icons/InfoOutlined';
@@ -28,36 +27,31 @@ interface Data {
 const rows = items;
 
 interface HeadCell {
-    disablePadding: boolean
     id: keyof Data
     label: string
-    numeric?: boolean
+    disablePadding: boolean
 }
 
 const headCells: readonly HeadCell[] = [
     {
         id: 'customer',
-        disablePadding: true,
         label: 'Cliente',
-        numeric: false
+        disablePadding: true
     },
     {
         id: 'lastPurchase',
-        disablePadding: false,
         label: 'Última compra',
-        numeric: true
+        disablePadding: false
     },
     {
         id: 'lastVehicle',
-        disablePadding: false,
         label: 'Último veículo',
-        numeric: true
+        disablePadding: false
     },
     {
         id: 'fleet',
-        disablePadding: false,
         label: 'Frota',
-        numeric: true
+        disablePadding: false
     }
 ];
 
@@ -74,7 +68,7 @@ function CustomerListingTableHead(props: CustomerListingTableProps) {
 
     return <TableHead className="CustomerListingTableHead">
         <TableRow>
-            <TableCell padding="checkbox">
+            <TableCell padding="checkbox" className="CustomerListingTableCell">
                 <Checkbox
                     color="secondary"
                     indeterminate={numSelected > 0 && numSelected < rowCount}
@@ -85,15 +79,15 @@ function CustomerListingTableHead(props: CustomerListingTableProps) {
             {headCells.map(headCell => (
                 <TableCell
                     key={headCell.id}
-                    align={headCell.numeric ? 'right' : 'left'}
                     padding={headCell.disablePadding ? 'none' : 'normal'}
+                    className="CustomerListingTableCell"
                 >
                     {headCell.label}
                 </TableCell>
             ))}
-            <TableCell align="right" colSpan={5}>
+            <TableCell align="right" colSpan={5} className="CustomerListingTableCell">
                 <ActionButton
-                    icon={<FilterListIcon />}
+                    icon={<FormatListBulletedIcon />}
                     text="Gerar Evento"
                     onClick={onOpenGenerateTicket}
                     disabled={numSelected === 0}
@@ -140,32 +134,26 @@ export function CustomerListing() {
                             key={row.id}
                             selected={isItemSelected}
                         >
-                            <TableCell padding="checkbox">
+                            <TableCell padding="checkbox" className="CustomerListingTableCell">
                                 <Checkbox
                                     color="secondary"
                                     checked={isItemSelected}
                                     inputProps={{ 'aria-labelledby': labelId }}
                                 />
                             </TableCell>
-                            <TableCell component="th" id={labelId} scope="row" padding="none">
+                            <TableCell component="th" id={labelId} scope="row" padding="none" className="CustomerListingTableCell">
                                 {row.customer}
                             </TableCell>
-                            <TableCell align="right">
-                                <span className="CustomerListingAdjustLastPurchaseTableCellPosition">
-                                    {row.lastPurchase}
-                                </span>
+                            <TableCell className="CustomerListingTableCell">
+                                {row.lastPurchase}
                             </TableCell>
-                            <TableCell align="right">
-                                <span className="CustomerListingAdjustLastVehicleTableCellPosition">
-                                    {row.lastVehicle}
-                                </span>
+                            <TableCell className="CustomerListingTableCell">
+                                {row.lastVehicle}
                             </TableCell>
-                            <TableCell align="right">
-                                <span className="CustomerListingAdjustfleetTableCellPosition">
-                                    {row.fleet}
-                                </span>
+                            <TableCell className="CustomerListingTableCell">
+                                {row.fleet}
                             </TableCell>
-                            <TableCell align="right">
+                            <TableCell align="right" className="CustomerListingTableCell">
                                 {row.hasRestriction
                                     ? <Tooltip title="Com restrições">
                                         <IconButton>
@@ -179,10 +167,10 @@ export function CustomerListing() {
                                     </Tooltip>
                                 }
                                 <IconButton>
-                                    <CustomPopover content={<FormatListBulletedIcon />} />
+                                    <CustomPopover type="tickets" icon={<FormatListBulletedIcon />} />
                                 </IconButton>
                                 <IconButton>
-                                    <CustomPopover content={<CalendarTodayIcon />} />
+                                    <CustomPopover type="dates" icon={<CalendarTodayIcon />} />
                                 </IconButton>
                                 <IconButton onClick={onOpenCustomerRegisterForm}>
                                     <EditIcon />

@@ -9,7 +9,11 @@
         }
 
         &Container {
-            max-height: calc(100vh - 250px);
+            max-height: calc(100vh - 230px);
+        }
+
+        &Cell {
+            border-bottom-color: $table-border-color !important;
         }
     }
 }
