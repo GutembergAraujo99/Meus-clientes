@@ -6,7 +6,10 @@ import { ComboBox } from '../../components/ComboBox/ComboBox';
 import { SimpleDatePicker } from '../../components/DatePicker/DatePicker';
 import { Modal } from '../../components/Modal/Modal';
 import { items } from '../../mock/CustomerRegisterForm.mock';
+import { TextsProvider } from '../../translation/customer-register-form';
 import './CustomerRegisterForm.scss';
+
+const texts = TextsProvider.get()
 
 interface CustomerRegisterFormProps {
     open: boolean
@@ -15,10 +18,10 @@ interface CustomerRegisterFormProps {
 
 export function CustomerRegisterForm({ open, onClose }: CustomerRegisterFormProps) {
     return <Modal
-        title="Cadastro do Cliente"
+        title={texts.CUSTOMER_REGISTER_MODAL_HEADER}
         content={<CustomerRegisterFormContent />}
-        defaultButtonText="Cancelar"
-        secondaryButtonText="Salvar"
+        defaultButtonText={texts.CANCEL_BUTTON_MODAL_FOOTER}
+        secondaryButtonText={texts.SAVE_BUTTON_MODAL_FOOTER}
         open={open}
         onClose={onClose}
         hasDivider
@@ -43,7 +46,7 @@ function CustomerRegisterFormPersonalData() {
         <TextField
             variant="outlined"
             size="small"
-            placeholder="Nome completo"
+            placeholder={texts.FULL_NAME_PLACEHOLDER}
             className="CustomerRegisterFormPersonalDataAdjustNameField"
         />
         <div className="CustomerRegisterFormPersonalDataAdjustFields">
@@ -52,7 +55,7 @@ function CustomerRegisterFormPersonalData() {
                     return <ComboBox
                         key={index}
                         value={personType}
-                        label="Tipo de pessoa"
+                        label={texts.PERSON_TYPE_PLACEHOLDER}
                         onChange={onChangePersonType}
                         items={item.customer.personType}
                         className="CustomerRegisterFormPersonalDataPersonTypeField"
@@ -70,14 +73,14 @@ function CustomerRegisterFormPersonalData() {
                 </InputMask>
             </div>
             <div className="CustomerRegisterFormPersonalDataAdjustFieldPosition">
-                <SimpleDatePicker label="Data nascimento" className="CustomerRegisterFormPersonalDataBirthDayField" />
+                <SimpleDatePicker label={texts.BIRTHDATE_LABEL} className="CustomerRegisterFormPersonalDataBirthDayField" />
             </div>
             <div className="CustomerRegisterFormPersonalDataAdjustFieldPosition">
                 {items.map((item, index) => {
                     return <ComboBox
                         key={index}
                         value={gender}
-                        label="Sexo"
+                        label={texts.GENDER_LABEL}
                         items={item.customer.gender}
                         onChange={onChangeGender}
                         className="CustomerRegisterFormPersonalDataGenderField"
@@ -89,7 +92,7 @@ function CustomerRegisterFormPersonalData() {
                     return <ComboBox
                         key={index}
                         value={source}
-                        label="Origem"
+                        label={texts.SOURCE_LABEL}
                         items={item.customer.source}
                         onChange={onChangeSource}
                         className="CustomerRegisterFormPersonalDataSourceField"
@@ -133,7 +136,7 @@ function CustomerRegisterFormContact() {
                         return <ComboBox
                             key={index}
                             value={phoneType}
-                            label="Tipo de telefone"
+                            label={texts.PHONE_TYPE_LABEL}
                             items={item.customer.phoneType}
                             onChange={onChangePhoneType}
                             className="CustomerRegisterFormContactPhoneTypeField"
@@ -145,7 +148,7 @@ function CustomerRegisterFormContact() {
                         type="tel"
                         variant="outlined"
                         size="small"
-                        placeholder="Informe seu telefone"
+                        placeholder={texts.TYPE_YOUR_PHONE_PLACEHOLDER}
                         className="CustomerRegisterFormContactPhoneField"
                     />
                 </div>
@@ -161,7 +164,7 @@ function CustomerRegisterFormContact() {
                         type="email"
                         variant="outlined"
                         size="small"
-                        placeholder="Informe seu e-mail"
+                        placeholder={texts.TYPE_YOUR_EMAIL_PLACEHOLDER}
                         value={email}
                         onChange={onChangeEmail}
                         error={!email}
@@ -206,7 +209,7 @@ function CustomerRegisterFormAddress() {
                     return <ComboBox
                         key={index}
                         value={publicPlace}
-                        label="Tipo logradouro"
+                        label={texts.PUBLIC_PLACE_LABEL}
                         items={item.customer.publicPlace}
                         onChange={onChangePublicPlace}
                         className="CustomerRegisterFormAddressAdjustPublicPlaceField"
@@ -214,27 +217,27 @@ function CustomerRegisterFormAddress() {
                 })}
             </div>
             <div className="CustomerRegisterFormAddressSpacingBetweenFields">
-                <TextField variant="outlined" size="small" placeholder="Nome do logradouro" className="CustomerRegisterFormAddressAdjustPublicPlaceNameField" />
+                <TextField variant="outlined" size="small" placeholder={texts.PUBLIC_PLACE_PLACEHOLDER} className="CustomerRegisterFormAddressAdjustPublicPlaceNameField" />
             </div>
             <div className="CustomerRegisterFormAddressSpacingBetweenFields">
                 <TextField
                     type="number"
                     variant="outlined"
                     size="small"
-                    placeholder="Número"
+                    placeholder={texts.PLACE_NUMBER_PLACEHOLDER}
                     InputLabelProps={{ shrink: true }}
                     className="CustomerRegisterFormAddressAdjustPublicPlaceNumberField"
                 />
             </div>
             <div className="CustomerRegisterFormAddressSpacingBetweenFields">
-                <TextField variant="outlined" size="small" placeholder="País" className="CustomerRegisterFormAddressAdjustCountryField" />
+                <TextField variant="outlined" size="small" placeholder={texts.COUNTRY_PLACEHOLDER} className="CustomerRegisterFormAddressAdjustCountryField" />
             </div>
             <div className="CustomerRegisterFormAddressSpacingBetweenFields">
                 {items.map((item, index) => {
                     return <ComboBox
                         key={index}
                         value={state}
-                        label="Estado"
+                        label={texts.STATE_LABEL}
                         onChange={onChangeState}
                         items={item.customer.state}
                         className="CustomerRegisterFormAddressAdjustStateField"
@@ -246,7 +249,7 @@ function CustomerRegisterFormAddress() {
                     return <ComboBox
                         key={index}
                         value={city}
-                        label="Cidade"
+                        label={texts.CITY_LABEL}
                         onChange={onChangeCity}
                         items={item.customer.city}
                         className="CustomerRegisterFormAddressAdjustCityField"
@@ -254,14 +257,14 @@ function CustomerRegisterFormAddress() {
                 })}
             </div>
             <div className="CustomerRegisterFormAddressSpacingBetweenFields">
-                <TextField variant="outlined" size="small" placeholder="Bairro" className="CustomerRegisterFormAddressAdjustDistrictField" />
+                <TextField variant="outlined" size="small" placeholder={texts.DISTRICT_PLACEHOLDER} className="CustomerRegisterFormAddressAdjustDistrictField" />
             </div>
             <div className="CustomerRegisterFormAddressSpacingBetweenFields">
                 <InputMask mask="99999-999" value={cep} onChange={onChangeCep}>
                     {() => <TextField
                         variant="outlined"
                         size="small"
-                        placeholder="CEP"
+                        placeholder={texts.CEP_PLACEHOLDER}
                         className="CustomerRegisterFormAddressAdjustCepField"
                     />}
                 </InputMask>

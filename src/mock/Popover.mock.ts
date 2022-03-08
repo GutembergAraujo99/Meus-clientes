@@ -1,5 +1,13 @@
 export const contents = [
     {
+        lgpd: [
+            {
+                description: 'Com restrições de consentimento'
+            },
+            {
+                description: 'Com preferência de contato'
+            },
+        ],
         tickets: [
             {
                 number: 103327,

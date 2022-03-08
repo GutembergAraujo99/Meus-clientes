@@ -3,7 +3,10 @@ import * as React from 'react';
 import { ComboBox } from '../../../components/ComboBox/ComboBox';
 import { SimpleDatePicker } from '../../../components/DatePicker/DatePicker';
 import { customerFilterItems } from '../../../mock/Filter.mock';
+import { TextsProvider } from '../../../translation/filter/customer-filter';
 import './CustomerFilter.scss';
+
+const texts = TextsProvider.get()
 
 export function CustomerFilter() {
     const [personType, setPersonType] = React.useState('');
@@ -15,19 +18,19 @@ export function CustomerFilter() {
     return <div className="CustomerFilter">
         <div className="CustomerFilterAdjustFields">
             <div className="CustomerFilterAdjustField">
-                <TextField variant="outlined" size="small" placeholder="Nome" className="CustomerFilterAdjustName" />
+                <TextField variant="outlined" size="small" placeholder={texts.NAME_PLACEHOLDER} className="CustomerFilterAdjustName" />
             </div>
             <div className="CustomerFilterAdjustField">
-                <TextField variant="outlined" size="small" placeholder="E-mail" className="CustomerFilterAdjustEmail" />
+                <TextField variant="outlined" size="small" placeholder={texts.EMAIL_PLACEHOLDER} className="CustomerFilterAdjustEmail" />
             </div>
             <div className="CustomerFilterAdjustField">
-                <TextField variant="outlined" size="small" placeholder="Telefone" className="CustomerFilterAdjustPhone" />
+                <TextField variant="outlined" size="small" placeholder={texts.PHONE_PLACEHOLDER} className="CustomerFilterAdjustPhone" />
             </div>
             <div className="CustomerFilterAdjustField">
                 {customerFilterItems.map((item, index) => {
                     return <ComboBox
                         key={index}
-                        label="Tipo pessoa"
+                        label={texts.PERSON_TYPE_LABEL}
                         value={personType}
                         onChange={onChangePersonType}
                         items={item.customer.personType}
@@ -36,13 +39,13 @@ export function CustomerFilter() {
                 })}
             </div>
             <div className="CustomerFilterAdjustField">
-                <TextField variant="outlined" size="small" placeholder="CPF" className="CustomerFilterAdjustCpf" />
+                <TextField variant="outlined" size="small" placeholder={texts.CPF_LABEL} className="CustomerFilterAdjustCpf" />
             </div>
             <div className="CustomerFilterAdjustField">
                 {customerFilterItems.map((item, index) => {
                     return <ComboBox
                         key={index}
-                        label="Origem"
+                        label={texts.SOURCE_LABEL}
                         value={source}
                         onChange={onChangeSource}
                         items={item.customer.source}
@@ -54,7 +57,7 @@ export function CustomerFilter() {
                 {customerFilterItems.map((item, index) => {
                     return <ComboBox
                         key={index}
-                        label="Sexo"
+                        label={texts.GENDER_LABEL}
                         value={gender}
                         onChange={onChangeGender}
                         items={item.customer.gender}
@@ -66,7 +69,7 @@ export function CustomerFilter() {
                 {customerFilterItems.map((item, index) => {
                     return <ComboBox
                         key={index}
-                        label="Tipo de cliente"
+                        label={texts.CUSTOMER_TYPE_LABEL}
                         value={customerType}
                         onChange={onChangeCustomerType}
                         items={item.customer.type}
@@ -75,13 +78,13 @@ export function CustomerFilter() {
                 })}
             </div>
             <div className="CustomerFilterAdjustField">
-                <SimpleDatePicker label="Data Aniversário" className="CustomerFilterAdjustBirthday" />
+                <SimpleDatePicker label={texts.BIRTHDAY_LABEL} className="CustomerFilterAdjustBirthday" />
             </div>
             <div className="CustomerFilterAdjustField">
                 {customerFilterItems.map((item, index) => {
                     return <ComboBox
                         key={index}
-                        label="Área de atuação"
+                        label={texts.OCCUPATION_AREA_LABEL}
                         value={occupationArea}
                         onChange={onChangeOccupationArea}
                         items={item.customer.occupationArea}
@@ -125,16 +128,16 @@ function CustomerFilterAddress() {
         <p className="CustomerFilterAddressLabel">Endereço</p>
         <div className="CustomerFilterAddressAdjustFields">
             <div className="CustomerFilterAddressAdjustField">
-                <TextField variant="outlined" size="small" placeholder="Rua" className="CustomerFilterAddressAdjustStreet" />
+                <TextField variant="outlined" size="small" placeholder={texts.STREET_PLACEHOLDER} className="CustomerFilterAddressAdjustStreet" />
             </div>
             <div className="CustomerFilterAddressAdjustField">
-                <TextField variant="outlined" size="small" placeholder="Bairro" className="CustomerFilterAddressAdjustDistrict" />
+                <TextField variant="outlined" size="small" placeholder={texts.DISTRICT_PLACEHOLDER} className="CustomerFilterAddressAdjustDistrict" />
             </div>
             <div className="CustomerFilterAddressAdjustField">
                 {customerFilterItems.map((item, index) => {
                     return <ComboBox
                         key={index}
-                        label="Cidade"
+                        label={texts.CITY_LABEL}
                         value={city}
                         onChange={onChangeCity}
                         items={item.customer.address.city}
@@ -146,7 +149,7 @@ function CustomerFilterAddress() {
                 {customerFilterItems.map((item, index) => {
                     return <ComboBox
                         key={index}
-                        label="Estado"
+                        label={texts.STATE_LABEL}
                         value={state}
                         onChange={onChangeState}
                         items={item.customer.address.state}
@@ -158,7 +161,7 @@ function CustomerFilterAddress() {
                 {customerFilterItems.map((item, index) => {
                     return <ComboBox
                         key={index}
-                        label="País"
+                        label={texts.COUNTRY_LABEL}
                         value={country}
                         onChange={onChangeCountry}
                         items={item.customer.address.country}
@@ -167,7 +170,7 @@ function CustomerFilterAddress() {
                 })}
             </div>
             <div className="CustomerFilterAddressAdjustField">
-                <TextField variant="outlined" size="small" placeholder="CEP" className="CustomerFilterAddressAdjustCep" />
+                <TextField variant="outlined" size="small" placeholder={texts.COUNTRY_LABEL} className="CustomerFilterAddressAdjustCep" />
             </div>
         </div>
     </div>

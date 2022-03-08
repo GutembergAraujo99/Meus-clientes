@@ -4,6 +4,9 @@ import { Modal } from '../../components/Modal/Modal';
 import { CustomerFilter } from './customer-filter/CustomerFilter';
 import { TicketFilter } from './ticket-filter/TicketFilter';
 import { VehicleFilter } from './vehicle-filter/VehicleFilter';
+import { TextsProvider } from '../../translation/filter';
+
+const texts = TextsProvider.get()
 
 interface FilterProps {
     open: boolean
@@ -12,10 +15,10 @@ interface FilterProps {
 
 export function Filter({ open, onClose }: FilterProps) {
     return <Modal
-        title="Filtro Avançado"
+        title={texts.ADVANCED_FILTER_MODAL_HEADER}
         content={<FilterContent />}
-        defaultButtonText="Limpar"
-        secondaryButtonText="Filtrar"
+        defaultButtonText={texts.CLEAR_BUTTON_MODAL_FOOTER}
+        secondaryButtonText={texts.FILTER_BUTTON_MODAL_FOOTER}
         open={open}
         onClose={onClose}
         hasDivider
@@ -32,9 +35,9 @@ function FilterContent() {
             textColor="secondary"
             indicatorColor="secondary"
         >
-            <Tab value={0} label="Cliente" />
-            <Tab value={1} label="Evento" />
-            <Tab value={2} label="Veículo" />
+            <Tab value={0} label={texts.CUSTOMER_TAB_OPTION} />
+            <Tab value={1} label={texts.TICKET_TAB_OPTION} />
+            <Tab value={2} label={texts.VEHICLE_TAB_OPTION} />
         </Tabs>
         <Divider />
         <TabPanel value={value} index={0}>

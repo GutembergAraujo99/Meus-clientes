@@ -10,7 +10,10 @@ import ThumbUpIcon from '@material-ui/icons/ThumbUp';
 import WhatsAppIcon from '@material-ui/icons/WhatsApp';
 import * as React from 'react';
 import { Modal } from '../../components/Modal/Modal';
+import { TextsProvider } from '../../translation/customer-info';
 import './CustomerInfo.scss';
+
+const texts = TextsProvider.get()
 
 interface CustomerInfoProps {
     open: boolean
@@ -40,7 +43,7 @@ function CustomerInfoContent() {
             <CustomerInfoCompany />
         </div>
         <div>
-            <p className="CustomerInfoContentTitle">Últimos eventos</p>
+            <p className="CustomerInfoContentTitle">{texts.LAST_TICKETS_SECTION_TITLE}</p>
             <CustomerInfoLastTicket situation="approved" />
             <CustomerInfoLastTicket situation="unapproved" />
             <CustomerInfoLastTicket situation="waiting" />
@@ -67,7 +70,7 @@ function CustomerInfoDetails() {
 
 function CustomerInfoContact() {
     return <div className="CustomerInfoContact">
-        <p className="CustomerInfoContactTitle">Contatos</p>
+        <p className="CustomerInfoContactTitle">{texts.CONTACTS_SECTION_TITLE}</p>
         <div className="CustomerInfoContactAdjustInfo">
             <LocalPhoneIcon color="action" className="CustomerInfoContactAdjustIcon" />
             <span className="CustomerInfoContactLabel">(51) 99999-9999</span>
@@ -85,7 +88,7 @@ function CustomerInfoContact() {
 
 function CustomerInfoAddress() {
     return <div className="CustomerInfoAddress">
-        <p className="CustomerInfoAddressTitle">Endereço</p>
+        <p className="CustomerInfoAddressTitle">{texts.ADDRESS_SECTION_TITLE}</p>
         <div className="CustomerInfoAddressAdjustInfo">
             <RoomIcon color="action" className="CustomerInfoAddressAdjustIcon" />
             <span className="CustomerInfoAddressLabel">
@@ -99,7 +102,7 @@ function CustomerInfoAddress() {
 
 function CustomerInfoVehicle() {
     return <div className="CustomerInfoVehicle">
-        <p className="CustomerInfoVehicleTitle">Veículos (2)</p>
+        <p className="CustomerInfoVehicleTitle">{texts.VEHICLES_SECTION_TITLE} (2)</p>
         <div className="CustomerInfoVehicleAdjustInfo">
             <DirectionsCarIcon color="action" className="CustomerInfoVehicleAdjustIcon" />
             <span className="CustomerInfoVehicleLabel">Polo / Highline 200 TSI - 2019/2019</span>
@@ -113,7 +116,7 @@ function CustomerInfoVehicle() {
 
 function CustomerInfoCompany() {
     return <div className="CustomerInfoCompany">
-        <p className="CustomerInfoCompanyTitle">Empresa(s) do cliente</p>
+        <p className="CustomerInfoCompanyTitle">{texts.CUSTOMER_COMPANIES_SECTION_TITLE}</p>
         <div className="CustomerInfoCompanyAdjustInfo">
             <BusinessIcon color="action" className="CustomerInfoCompanyAdjustIcon" />
             <span className="CustomerInfoCompanyLabel">Hyundai de NH</span>

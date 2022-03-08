@@ -9,12 +9,4 @@
     flex-direction: column;
     flex-shrink: 1;
     flex-grow: 1;
-
-    &TitleHeader {
-        font-family: $font-family;
-        font-weight: 400;
-        font-size: 20px;
-        letter-spacing: 0.15px;
-        color: $font-title-color;
-    }
 }

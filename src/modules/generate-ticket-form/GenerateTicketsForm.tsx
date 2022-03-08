@@ -3,7 +3,10 @@ import * as React from 'react';
 import { ComboBox } from '../../components/ComboBox/ComboBox';
 import { Modal } from '../../components/Modal/Modal';
 import { items } from '../../mock/GenerateTicketsForm.mock';
+import { TextsProvider } from '../../translation/generate-ticket-form';
 import './GenerateTicketForm.scss';
+
+const texts = TextsProvider.get()
 
 interface GenerateTicketFormProps {
     open: boolean
@@ -12,10 +15,10 @@ interface GenerateTicketFormProps {
 
 export function GenerateTicketForm({ open, onClose }: GenerateTicketFormProps) {
     return <Modal
-        title="Gerar Evento"
+        title={texts.GENERATE_TICKET_MODAL_HEADER}
         content={<GenerateTicketFormContent />}
-        defaultButtonText="Cancelar"
-        secondaryButtonText="Gerar"
+        defaultButtonText={texts.CANCEL_BUTTON_MODAL_FOOTER}
+        secondaryButtonText={texts.GENERATE_BUTTON_MODAL_FOOTER}
         open={open}
         onClose={onClose}
         hasDivider
@@ -33,7 +36,7 @@ function GenerateTicketFormContent() {
                     return <ComboBox
                         key={index}
                         value={ticketGroup}
-                        label="Grupo evento"
+                        label={texts.EVENT_GROUP}
                         onChange={onChangeEventGroup}
                         items={item.ticket.group}
                         className="GenerateTicketFormGroupEvent"
@@ -45,7 +48,7 @@ function GenerateTicketFormContent() {
                     return <ComboBox
                         key={index}
                         value={eventType}
-                        label="Tipo evento"
+                        label={texts.EVENT_TYPE}
                         onChange={onChangeEventType}
                         items={item.ticket.type}
                         className="GenerateTicketFormEventType"
@@ -61,44 +64,41 @@ function GenerateTicketFormContent() {
                         color="inherit"
                         size="small"
                         className="GenerateTicketFormDisregardCustomer">
-                        DESCONSIDERAR
+                        {texts.DISREGARD_WARNING_BUTTON}
                     </Button>
                 }>
-                <span>
-                    Existem clientes com o mesmo tipo evento em aberto.<br />
-                    Para desconsiderá-los, clique ao lado.
-                </span>
+                <span dangerouslySetInnerHTML={{ __html: texts.DISREGARD_WARNING_TEXT }} />
             </Alert>
         </div>
         <FormGroup className="GenerateTicketFormAdjustGenerateContacts">
             <FormControlLabel
                 control={<Checkbox color="secondary" defaultChecked />}
-                label="Gerar contatos para mais de um dia"
+                label={texts.GENERATE_CONTACTS_CHECKBOX_LABEL}
                 className="GenerateTicketFormAdjustTypographyColor"
             />
         </FormGroup>
         <TextField
-            placeholder="Dias de trabalho"
+            placeholder={texts.WORK_DAYS_PLACEHOLDER}
             type="number"
             size="small"
             InputLabelProps={{ shrink: true }}
             className="GenerateTicketFormAdjustWorkDaysTextField"
         />
         <div>
-            <p className="GenerateTicketFormAdjustTypographyColor" >Considerar</p>
+            <p className="GenerateTicketFormAdjustTypographyColor">{texts.CONSIDER_TITLE}</p>
             <FormGroup>
                 <div className="GenerateTicketFormConsiderWeekDays">
                     <div className="GenerateTicketFormConsiderWeekDaysSpacing">
                         <FormControlLabel
                             control={<Checkbox color="secondary" />}
-                            label="Sábado"
+                            label={texts.SATURDAY_CHECKBOX_LABEL}
                             className="GenerateTicketFormAdjustTypographyColor"
                         />
                     </div>
                     <div>
                         <FormControlLabel
                             control={<Checkbox color="secondary" />}
-                            label="Domingo"
+                            label={texts.SUNDAY_CHECKBOX_LABEL}
                             className="GenerateTicketFormAdjustTypographyColor"
                         />
                     </div>
@@ -108,7 +108,7 @@ function GenerateTicketFormContent() {
         <FormGroup className="GenerateTicketFormAdjustGenerateCompanyTicket">
             <FormControlLabel
                 control={<Checkbox color="secondary" defaultChecked />}
-                label="Gerar evento para empresa do cliente"
+                label={texts.GENERATE_TICKET_FOR_CUSTOMER_COMPANY_CHECKBOX_LABEL}
                 className="GenerateTicketFormAdjustTypographyColor"
             />
         </FormGroup>

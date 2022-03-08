@@ -7,7 +7,6 @@ import { getOrCreateTheme } from './theme';
 function App() {
     return <ThemeProvider theme={getOrCreateTheme()}>
         <div className="App">
-            <h2 className="AppTitleHeader">Meus Clientes</h2>
             <Main />
         </div>
     </ThemeProvider>

@@ -1,4 +1,4 @@
-import { Checkbox, IconButton, Table, TableBody, TableCell, TableContainer, TableHead, TablePagination, TableRow, Tooltip } from '@material-ui/core';
+import { Checkbox, IconButton, Table, TableBody, TableCell, TableContainer, TableHead, TablePagination, TableRow } from '@material-ui/core';
 import CalendarTodayIcon from '@material-ui/icons/CalendarToday';
 import EditIcon from '@material-ui/icons/Edit';
 import FindInPageIcon from '@material-ui/icons/FindInPage';
@@ -10,10 +10,13 @@ import { v4 as uuid } from 'uuid';
 import { ActionButton } from '../../components/ActionButton/ActionButton';
 import { CustomPopover } from '../../components/Popover/Popover';
 import { items } from '../../mock/CustomerListing.mock';
+import { TextsProvider } from '../../translation/customer-listing';
 import { CustomerInfo } from '../customer-info/CustomerInfo';
 import { CustomerRegisterForm } from '../customer-register-form/CustomerRegisterForm';
 import { GenerateTicketForm } from '../generate-ticket-form/GenerateTicketsForm';
 import './CustomerListing.scss';
+
+const texts = TextsProvider.get()
 
 interface Data {
     id: number
@@ -35,22 +38,22 @@ interface HeadCell {
 const headCells: readonly HeadCell[] = [
     {
         id: 'customer',
-        label: 'Cliente',
+        label: texts.TABLE_HEAD_CUSTOMER,
         disablePadding: true
     },
     {
         id: 'lastPurchase',
-        label: 'Última compra',
+        label: texts.TABLE_HEAD_LAST_PURCHASE,
         disablePadding: false
     },
     {
         id: 'lastVehicle',
-        label: 'Último veículo',
+        label: texts.TABLE_HEAD_LAST_VEHICLE,
         disablePadding: false
     },
     {
         id: 'fleet',
-        label: 'Frota',
+        label: texts.TABLE_HEAD_FLEET,
         disablePadding: false
     }
 ];
@@ -88,7 +91,7 @@ function CustomerListingTableHead(props: CustomerListingTableProps) {
             <TableCell align="right" colSpan={5} className="CustomerListingTableCell">
                 <ActionButton
                     icon={<FormatListBulletedIcon />}
-                    text="Gerar Evento"
+                    text={texts.GENERATE_TICKET_BUTTON}
                     onClick={onOpenGenerateTicket}
                     disabled={numSelected === 0}
                 />
@@ -155,16 +158,20 @@ export function CustomerListing() {
                             </TableCell>
                             <TableCell align="right" className="CustomerListingTableCell">
                                 {row.hasRestriction
-                                    ? <Tooltip title="Com restrições">
-                                        <IconButton>
-                                            <WarningIcon color="warning" />
-                                        </IconButton>
-                                    </Tooltip>
-                                    : <Tooltip title="Sem restrições">
-                                        <IconButton>
-                                            <InfoOutlinedIcon color="info" />
-                                        </IconButton>
-                                    </Tooltip>
+                                    ? <IconButton>
+                                        <CustomPopover
+                                            type="lgpd"
+                                            icon={<WarningIcon color="warning" />}
+                                            hasRestrictions={row.hasRestriction}
+                                        />
+                                    </IconButton>
+                                    : <IconButton>
+                                        <CustomPopover
+                                            type="lgpd"
+                                            icon={<InfoOutlinedIcon color="info" />}
+                                            hasRestrictions={row.hasRestriction}
+                                        />
+                                    </IconButton>
                                 }
                                 <IconButton>
                                     <CustomPopover type="tickets" icon={<FormatListBulletedIcon />} />
@@ -197,7 +204,7 @@ export function CustomerListing() {
             page={page}
             onPageChange={handleChangePage}
             onRowsPerPageChange={handleChangeRowsPerPage}
-            labelRowsPerPage="Cadastros por página"
+            labelRowsPerPage={texts.TABLE_PAGINATION_ROWS_PER_PAGE}
         />
         <CustomerInfo open={openCustomerInfo} onClose={onCloseCustomerInfo} onOpenEdition={onOpenCustomerRegisterForm} />
         <CustomerRegisterForm open={openCustomerRegisterForm} onClose={onCloseCustomerRegisterForm} />

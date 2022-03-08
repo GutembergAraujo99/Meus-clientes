@@ -12,14 +12,17 @@ const transformOrigin: PopoverOrigin = { vertical: 'top', horizontal: 'right' }
 interface CustomPopoverProps {
     type: ContentType
     icon: JSX.Element
+    hasRestrictions?: boolean
 }
 
-export function CustomPopover({ type, icon }: CustomPopoverProps) {
+export function CustomPopover({ type, icon, hasRestrictions }: CustomPopoverProps) {
     const [anchorEl, setAnchorEl] = React.useState<HTMLElement | null>(null);
     const open = Boolean(anchorEl);
 
     let title = '';
-    if (type === 'tickets') {
+    if (type === 'lgpd') {
+        title = 'LGPD';
+    } else if (type === 'tickets') {
         title = 'Histórico de eventos';
     } else if (type === 'dates') {
         title = 'Datas';
@@ -51,7 +54,11 @@ export function CustomPopover({ type, icon }: CustomPopoverProps) {
                                 ? content.dates.map((item, index) => {
                                     return <PopoverDate key={index} date={item.date} description={item.description} />
                                 })
-                                : <></>
+                                : type === 'lgpd' && hasRestrictions
+                                    ? content.lgpd.map((item, index) => {
+                                        return <PopoverLgpd key={index} description={item.description} />
+                                    })
+                                    : <PopoverLgpd description={'Sem restrições'} />
                         }
                     </div>
                 })}
@@ -92,5 +99,17 @@ function PopoverDate({ date, description }: PopoverDateProps) {
             <span className="PopoverSubContentTitle">{description}</span>
             <span>{date}</span>
         </div>
+    </div>
+}
+
+interface PopoverLgpdProps {
+    description: string
+}
+
+function PopoverLgpd({ description }: PopoverLgpdProps) {
+    return <div className="PopoverContent">
+        <ul className="PopoverItem">
+            <li>{description}</li>
+        </ul>
     </div>
 }
