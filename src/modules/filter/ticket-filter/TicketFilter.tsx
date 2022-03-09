@@ -31,10 +31,10 @@ export function TicketFilter() {
                 })}
             </div>
             <div className="TicketFilterAdjustField">
-                <SimpleDatePicker label={texts.DATE_START_LABEL} className="TicketFilterAdjustStartDate" />
+                <SimpleDatePicker label={texts.DATE_START_LABEL} inputFormat={texts.DATE_FORMAT} className="TicketFilterAdjustStartDate" />
             </div>
             <div className="TicketFilterAdjustField">
-                <SimpleDatePicker label={texts.DATE_END_LABEL} className="TicketFilterAdjustEndDate" />
+                <SimpleDatePicker label={texts.DATE_END_LABEL} inputFormat={texts.DATE_FORMAT} className="TicketFilterAdjustEndDate" />
             </div>
             <div className="TicketFilterAdjustField">
                 {ticketFilterItems.map((item, index) => {
@@ -85,10 +85,10 @@ function TicketFilterLostSalesInPeriod() {
         </p>
         <div className="TicketFilterLostSalesInPeriodAdjustFields">
             <div className="TicketFilterLostSalesInPeriodAdjustField">
-                <SimpleDatePicker label={texts.LOST_SALES_IN_PERIOD_DATE_START_LABEL} className="TicketFilterLostSalesInPeriodStartDate" />
+                <SimpleDatePicker label={texts.LOST_SALES_IN_PERIOD_DATE_START_LABEL} inputFormat={texts.DATE_FORMAT} className="TicketFilterLostSalesInPeriodStartDate" />
             </div>
             <div className="TicketFilterLostSalesInPeriodAdjustField">
-                <SimpleDatePicker label={texts.LOST_SALES_IN_PERIOD_DATE_END_LABEL} className="TicketFilterLostSalesInPeriodEndDate" />
+                <SimpleDatePicker label={texts.LOST_SALES_IN_PERIOD_DATE_END_LABEL} inputFormat={texts.DATE_FORMAT} className="TicketFilterLostSalesInPeriodEndDate" />
             </div>
         </div>
     </div>
@@ -101,10 +101,10 @@ function TicketFilterSuccessfulSalesInPeriod() {
         </p>
         <div className="TicketFilterSuccessfulSalesInPeriodAdjustFields">
             <div className="TicketFilterSuccessfulSalesInPeriodAdjustField">
-                <SimpleDatePicker label={texts.SUCCESSFUL_SALES_IN_PERIOD_DATE_START_LABEL} className="TicketFilterSuccessfulSalesInPeriodStartDate" />
+                <SimpleDatePicker label={texts.SUCCESSFUL_SALES_IN_PERIOD_DATE_START_LABEL} inputFormat={texts.DATE_FORMAT} className="TicketFilterSuccessfulSalesInPeriodStartDate" />
             </div>
             <div className="TicketFilterSuccessfulSalesInPeriodAdjustField">
-                <SimpleDatePicker label={texts.SUCCESSFUL_SALES_IN_PERIOD_DATE_END_LABEL} className="TicketFilterSuccessfulSalesInPeriodEndDate" />
+                <SimpleDatePicker label={texts.SUCCESSFUL_SALES_IN_PERIOD_DATE_END_LABEL} inputFormat={texts.DATE_FORMAT} className="TicketFilterSuccessfulSalesInPeriodEndDate" />
             </div>
         </div>
     </div>

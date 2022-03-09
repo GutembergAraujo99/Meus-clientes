@@ -14,4 +14,6 @@ export const Texts = {
     SUCCESSFUL_SALES_IN_PERIOD_TITLE: 'Vendas no período',
     SUCCESSFUL_SALES_IN_PERIOD_DATE_START_LABEL: 'Vendas no período',
     SUCCESSFUL_SALES_IN_PERIOD_DATE_END_LABEL: 'Vendas no período',
+
+    DATE_FORMAT: 'dd/MM/yyyy'
 }

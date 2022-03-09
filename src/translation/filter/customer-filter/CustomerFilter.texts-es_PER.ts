@@ -8,6 +8,7 @@ export const Texts = {
 
     PERSON_TYPE_LABEL: 'Tipo pessoa',
     CPF_LABEL: 'CPF',
+    CNPJ_LABEL: 'CNPJ',
     SOURCE_LABEL: 'Origem',
     GENDER_LABEL: 'Sexo',
     CUSTOMER_TYPE_LABEL: 'Tipo de cliente',
@@ -15,5 +16,7 @@ export const Texts = {
     OCCUPATION_AREA_LABEL: 'Área de atuação',
     CITY_LABEL: 'Cidade',
     STATE_LABEL: 'Estado',
-    COUNTRY_LABEL: 'País'
+    COUNTRY_LABEL: 'País',
+
+    DATE_FORMAT: 'dd/MM/yyyy'
 }

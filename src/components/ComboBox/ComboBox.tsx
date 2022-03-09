@@ -6,7 +6,7 @@ interface ComboBoxProps {
     className?: string
     label: string
     value: string
-    items: Array<string>
+    items: Array<string | number | { id: number, name: string }>
     onChange: (event: SelectChangeEvent<string>) => void
 }
 

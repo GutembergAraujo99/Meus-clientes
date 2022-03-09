@@ -12,7 +12,7 @@ interface ModalProps {
     hasDivider?: boolean
     hasEdition?: boolean
     closeIcon?: boolean
-    content: JSX.Element
+    children: JSX.Element
     defaultButtonText?: string
     secondaryButtonText?: string
     open: boolean
@@ -21,7 +21,7 @@ interface ModalProps {
     onClose: () => void
 }
 
-export function Modal({ title, hasAlert, hasDivider, hasEdition, closeIcon, content, defaultButtonText, secondaryButtonText, open, className, onOpenEdition, onClose }: ModalProps) {
+export function Modal({ title, hasAlert, hasDivider, hasEdition, closeIcon, children, defaultButtonText, secondaryButtonText, open, className, onOpenEdition, onClose }: ModalProps) {
     return <Dialog
         open={open}
         keepMounted
@@ -58,7 +58,9 @@ export function Modal({ title, hasAlert, hasDivider, hasEdition, closeIcon, cont
             </div>
             {hasDivider ? <Divider /> : <></>}
         </DialogTitle>
-        <DialogContent className={clsx("ModalContent", className)}>{content}</DialogContent>
+        <DialogContent className={clsx("ModalContent", className)}>
+            {children}
+        </DialogContent>
         {defaultButtonText !== undefined && secondaryButtonText !== undefined
             ? <DialogActions className="ModalFooter">
                 <Button variant="contained" onClick={onClose}>{defaultButtonText}</Button>

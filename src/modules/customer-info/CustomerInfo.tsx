@@ -24,13 +24,14 @@ interface CustomerInfoProps {
 export function CustomerInfo({ open, onClose, onOpenEdition }: CustomerInfoProps) {
     return <Modal
         title="Alberto Roberto"
-        content={<CustomerInfoContent />}
         open={open}
         onClose={onClose}
         onOpenEdition={onOpenEdition}
         hasAlert
         hasEdition
-    />
+    >
+        <CustomerInfoContent />
+    </Modal>
 }
 
 function CustomerInfoContent() {

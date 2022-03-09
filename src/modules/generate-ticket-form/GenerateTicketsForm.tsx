@@ -16,13 +16,14 @@ interface GenerateTicketFormProps {
 export function GenerateTicketForm({ open, onClose }: GenerateTicketFormProps) {
     return <Modal
         title={texts.GENERATE_TICKET_MODAL_HEADER}
-        content={<GenerateTicketFormContent />}
         defaultButtonText={texts.CANCEL_BUTTON_MODAL_FOOTER}
         secondaryButtonText={texts.GENERATE_BUTTON_MODAL_FOOTER}
         open={open}
         onClose={onClose}
         hasDivider
-    />
+    >
+        <GenerateTicketFormContent />
+    </Modal>
 }
 
 function GenerateTicketFormContent() {

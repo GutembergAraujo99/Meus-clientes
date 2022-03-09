@@ -1,5 +1,6 @@
 import { SelectChangeEvent, TextField } from '@material-ui/core';
 import * as React from 'react';
+import InputMask from 'react-input-mask';
 import { ComboBox } from '../../../components/ComboBox/ComboBox';
 import { SimpleDatePicker } from '../../../components/DatePicker/DatePicker';
 import { customerFilterItems } from '../../../mock/Filter.mock';
@@ -10,10 +11,25 @@ const texts = TextsProvider.get()
 
 export function CustomerFilter() {
     const [personType, setPersonType] = React.useState('');
+    const [cpf, setCpf] = React.useState('');
+    const [cnpj, setCnpj] = React.useState('');
     const [source, setSource] = React.useState('');
     const [gender, setGender] = React.useState('');
     const [customerType, setCustomerType] = React.useState('');
     const [occupationArea, setOccupationArea] = React.useState('');
+
+    let mask = '';
+    let placeholderMask = '';
+    let value: string | number | readonly string[] | null | undefined = null;
+    if (+personType === 0) {
+        mask = '999.999.999-99';
+        placeholderMask = texts.CPF_LABEL;
+        value = cpf;
+    } else {
+        mask = '99.999.999/9999-99';
+        placeholderMask = texts.CNPJ_LABEL;
+        value = cnpj;
+    }
 
     return <div className="CustomerFilter">
         <div className="CustomerFilterAdjustFields">
@@ -39,7 +55,14 @@ export function CustomerFilter() {
                 })}
             </div>
             <div className="CustomerFilterAdjustField">
-                <TextField variant="outlined" size="small" placeholder={texts.CPF_LABEL} className="CustomerFilterAdjustCpf" />
+                <InputMask mask={mask} value={value} onChange={onChangeDocument}>
+                    {() => <TextField
+                        variant="outlined"
+                        size="small"
+                        placeholder={placeholderMask}
+                        className="CustomerFilterAdjustCpf" />
+                    }
+                </InputMask>
             </div>
             <div className="CustomerFilterAdjustField">
                 {customerFilterItems.map((item, index) => {
@@ -78,7 +101,7 @@ export function CustomerFilter() {
                 })}
             </div>
             <div className="CustomerFilterAdjustField">
-                <SimpleDatePicker label={texts.BIRTHDAY_LABEL} className="CustomerFilterAdjustBirthday" />
+                <SimpleDatePicker label={texts.BIRTHDAY_LABEL} inputFormat={texts.DATE_FORMAT} className="CustomerFilterAdjustBirthday" />
             </div>
             <div className="CustomerFilterAdjustField">
                 {customerFilterItems.map((item, index) => {
@@ -97,6 +120,14 @@ export function CustomerFilter() {
             <CustomerFilterAddress />
         </div>
     </div>
+
+    function onChangeDocument(event: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) {
+        if (value === cpf) {
+            setCpf(event.target.value);
+        } else {
+            setCnpj(event.target.value);
+        }
+    }
 
     function onChangePersonType(event: SelectChangeEvent<string>) {
         setPersonType(event.target.value);

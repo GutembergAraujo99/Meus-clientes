@@ -20,4 +20,10 @@ export const Texts = {
     PUBLIC_PLACE_LABEL: 'Tipo logradouro',
     STATE_LABEL: 'Estado',
     CITY_LABEL: 'Cidade',
+
+    CONTACTS_TITLE: 'Contatos',
+    PHONES_TITLE: 'Telefones',
+    EMAILS_TITLE: 'E-mails',
+
+    DATE_FORMAT: 'dd/MM/yyyy'
 }

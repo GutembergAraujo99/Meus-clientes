@@ -1,7 +1,7 @@
 export const items = [
     {
         customer: {
-            personType: ['Tipo de pessoa 1', 'Tipo de pessoa 2', 'Tipo de pessoa 3'],
+            personType: ['Pessoa Física', 'Pessoa Jurídica'],
             gender: ['Masculino', 'Feminino'],
             source: ['Loja', 'Internet', 'Feirão'],
             phoneType: ['Telefone Comercial', 'Telefone Residencial', 'Telefone Pessoal'],

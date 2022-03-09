@@ -44,10 +44,10 @@ export function VehicleFilter() {
                 <TextField variant="outlined" size="small" placeholder={texts.VEHICLE_CHASSIS_PLACEHOLDER} className="VehicleFilterChassis" />
             </div>
             <div className="VehicleFilterAdjustField">
-                <SimpleDatePicker label={texts.SALE_DATE_LABEL} className="VehicleFilterSaleDate" />
+                <SimpleDatePicker label={texts.SALE_DATE_LABEL} inputFormat={texts.DATE_FORMAT} className="VehicleFilterSaleDate" />
             </div>
             <div className="VehicleFilterAdjustField">
-                <SimpleDatePicker label={texts.INVOICE_DATE_LABEL} className="VehicleFilterInvoiceDate" />
+                <SimpleDatePicker label={texts.INVOICE_DATE_LABEL} inputFormat={texts.DATE_FORMAT} className="VehicleFilterInvoiceDate" />
             </div>
         </div>
     </div>

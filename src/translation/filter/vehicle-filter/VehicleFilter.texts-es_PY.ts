@@ -9,4 +9,6 @@ export const Texts = {
     HAS_VEHICLE_LABEL: 'Possui veículo',
     SALE_DATE_LABEL: 'Data da venda',
     INVOICE_DATE_LABEL: 'Data da nota',
+
+    DATE_FORMAT: 'dd/MM/yyyy'
 }

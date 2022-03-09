@@ -1,10 +1,10 @@
 import { Divider, Tab, Tabs } from '@material-ui/core';
 import * as React from 'react';
 import { Modal } from '../../components/Modal/Modal';
+import { TextsProvider } from '../../translation/filter';
 import { CustomerFilter } from './customer-filter/CustomerFilter';
 import { TicketFilter } from './ticket-filter/TicketFilter';
 import { VehicleFilter } from './vehicle-filter/VehicleFilter';
-import { TextsProvider } from '../../translation/filter';
 
 const texts = TextsProvider.get()
 
@@ -16,13 +16,14 @@ interface FilterProps {
 export function Filter({ open, onClose }: FilterProps) {
     return <Modal
         title={texts.ADVANCED_FILTER_MODAL_HEADER}
-        content={<FilterContent />}
         defaultButtonText={texts.CLEAR_BUTTON_MODAL_FOOTER}
         secondaryButtonText={texts.FILTER_BUTTON_MODAL_FOOTER}
         open={open}
         onClose={onClose}
         hasDivider
-    />
+    >
+        <FilterContent />
+    </Modal>
 }
 
 function FilterContent() {

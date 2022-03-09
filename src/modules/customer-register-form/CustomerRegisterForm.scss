@@ -47,7 +47,7 @@
     &AdjustTitle {
         display: flex;
         justify-content: space-between;
-        margin-right: 360px;
+        width: 850px;
     }
 
     &AdjustTitleFont {
@@ -56,6 +56,7 @@
 
     &AdjustSubTitleFont {
         @include CustomFont($font-subtitle-color);
+        width: 415px;
     }
 
     &AdjustFields {
@@ -64,16 +65,30 @@
         margin: 10px 20px 10px 0px;
     }
 
-    &AdjustPosition {
+    &AdjustPhonePosition {
         display: flex;
     }
 
+    &AdjustEmailPosition {
+        width: 100%;
+        margin-left: 15px;
+    }
+
+    &EmailFieldPosition {
+        margin-left: -25px;
+    }
+
+    &FieldContainer {
+        display: flex;
+        margin-bottom: 10px;
+    }
+
     &SpacingBetweenFields {
-        margin-right: 16px;
+        min-width: 426px;
     }
 
     &SpacingBetweenFieldAndIcon {
-        margin-right: 10px;
+        margin: 0px 0px 0px 16px;
     }
 
     &PhoneTypeField {
@@ -86,6 +101,11 @@
 
     &EmailField {
         width: 344px;
+        margin-bottom: 10px !important;
+    }
+
+    &AdjustRemoveButton {
+        display: flex;
     }
 }
 

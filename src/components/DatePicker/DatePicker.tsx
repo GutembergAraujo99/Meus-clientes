@@ -1,3 +1,4 @@
+import DateFnsUtils from '@date-io/date-fns';
 import { TextField, TextFieldProps } from '@material-ui/core';
 import { DatePicker } from '@material-ui/lab';
 import AdapterDateFns from '@material-ui/lab/AdapterDateFns';
@@ -6,16 +7,18 @@ import * as React from 'react';
 
 interface SimpleDatePickerProps {
     label: string
+    inputFormat: string
     className?: string
 }
 
-export function SimpleDatePicker({ label, className }: SimpleDatePickerProps) {
+export function SimpleDatePicker({ label, inputFormat, className }: SimpleDatePickerProps) {
     const [date, setDate] = React.useState<Date | null>(null);
 
-    return <LocalizationProvider dateAdapter={AdapterDateFns}>
+    return <LocalizationProvider utils={DateFnsUtils} dateAdapter={AdapterDateFns}>
         <DatePicker
             label={label}
             value={date}
+            inputFormat={inputFormat}
             onChange={onDateChange}
             renderInput={(params: TextFieldProps) => <TextField {...params} size="small" className={className} />}
         />

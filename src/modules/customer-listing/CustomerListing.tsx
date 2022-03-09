@@ -158,27 +158,27 @@ export function CustomerListing() {
                             </TableCell>
                             <TableCell align="right" className="CustomerListingTableCell">
                                 {row.hasRestriction
-                                    ? <IconButton>
+                                    ? <div className="CustomerListingAdjustIcon">
                                         <CustomPopover
                                             type="lgpd"
                                             icon={<WarningIcon color="warning" />}
                                             hasRestrictions={row.hasRestriction}
                                         />
-                                    </IconButton>
-                                    : <IconButton>
+                                    </div>
+                                    : <div className="CustomerListingAdjustIcon">
                                         <CustomPopover
                                             type="lgpd"
                                             icon={<InfoOutlinedIcon color="info" />}
                                             hasRestrictions={row.hasRestriction}
                                         />
-                                    </IconButton>
+                                    </div>
                                 }
-                                <IconButton>
-                                    <CustomPopover type="tickets" icon={<FormatListBulletedIcon />} />
-                                </IconButton>
-                                <IconButton>
-                                    <CustomPopover type="dates" icon={<CalendarTodayIcon />} />
-                                </IconButton>
+                                <div className="CustomerListingAdjustIcon">
+                                    <CustomPopover type="tickets" icon={<FormatListBulletedIcon color="action" />} />
+                                </div>
+                                <div className="CustomerListingAdjustIcon">
+                                    <CustomPopover type="dates" icon={<CalendarTodayIcon color="action" />} />
+                                </div>
                                 <IconButton onClick={onOpenCustomerRegisterForm}>
                                     <EditIcon />
                                 </IconButton>
@@ -245,7 +245,8 @@ export function CustomerListing() {
         setPage(0);
     }
 
-    function onOpenCustomerInfo() {
+    function onOpenCustomerInfo(event?: React.MouseEvent<HTMLButtonElement, MouseEvent>) {
+        event!.stopPropagation();
         setOpenCustomerInfo(true);
     }
 
@@ -253,7 +254,8 @@ export function CustomerListing() {
         setOpenCustomerInfo(false);
     }
 
-    function onOpenCustomerRegisterForm() {
+    function onOpenCustomerRegisterForm(event?: React.MouseEvent<HTMLButtonElement, MouseEvent>) {
+        event!.stopPropagation();
         setOpenCustomerRegisterForm(true);
     }
 
