@@ -14,7 +14,7 @@ export const Texts = {
     SUNDAY_CHECKBOX_LABEL: 'Domingo',
     GENERATE_TICKET_FOR_CUSTOMER_COMPANY_CHECKBOX_LABEL: 'Gerar evento para empresa do cliente',
 
-    WORK_DAYS_PLACEHOLDER: 'Dias de trabalho',
+    WORK_DAYS_LABEL: 'Dias de trabalho',
 
     CONSIDER_TITLE: 'Considerar'
 }

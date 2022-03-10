@@ -18,8 +18,8 @@
         &Header {
             display: flex;
             justify-content: space-between;
-            padding: 16px;
-            margin-bottom: 30px;
+            padding: 16px 16px 0px;
+            margin-bottom: 24px;
 
             &AdjustTextField {
                 width: 550px;

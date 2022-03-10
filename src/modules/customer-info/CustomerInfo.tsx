@@ -27,6 +27,7 @@ export function CustomerInfo({ open, onClose, onOpenEdition }: CustomerInfoProps
     return <Modal
         title="Alberto Roberto"
         open={open}
+        onClick={onClose}
         onClose={onClose}
         onOpenEdition={onOpenEdition}
         hasEdition

@@ -1,11 +1,12 @@
 export const Texts = {
-    NAME_PLACEHOLDER: 'Nome',
-    EMAIL_PLACEHOLDER: 'E-mail',
-    PHONE_PLACEHOLDER: 'Telefone',
-    STREET_PLACEHOLDER: 'Rua',
-    DISTRICT_PLACEHOLDER: 'Bairro',
-    CEP_PLACEHOLDER: 'CEP',
+    ADDRESS_TITLE: 'Endereço',
 
+    NAME_LABEL: 'Nome',
+    EMAIL_LABEL: 'E-mail',
+    PHONE_LABEL: 'Telefone',
+    STREET_LABEL: 'Rua',
+    DISTRICT_LABEL: 'Bairro',
+    CEP_LABEL: 'CEP',
     PERSON_TYPE_LABEL: 'Tipo pessoa',
     CPF_LABEL: 'CPF',
     CNPJ_LABEL: 'CNPJ',

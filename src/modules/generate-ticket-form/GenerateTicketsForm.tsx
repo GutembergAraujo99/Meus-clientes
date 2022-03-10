@@ -19,6 +19,7 @@ export function GenerateTicketForm({ open, onClose }: GenerateTicketFormProps) {
         defaultButtonText={texts.CANCEL_BUTTON_MODAL_FOOTER}
         secondaryButtonText={texts.GENERATE_BUTTON_MODAL_FOOTER}
         open={open}
+        onClick={onClose}
         onClose={onClose}
         hasDivider
     >
@@ -79,10 +80,9 @@ function GenerateTicketFormContent() {
             />
         </FormGroup>
         <TextField
-            placeholder={texts.WORK_DAYS_PLACEHOLDER}
             type="number"
             size="small"
-            InputLabelProps={{ shrink: true }}
+            label={texts.WORK_DAYS_LABEL}
             className="GenerateTicketFormAdjustWorkDaysTextField"
         />
         <div>

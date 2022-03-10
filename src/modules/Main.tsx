@@ -20,7 +20,13 @@ export function Main() {
         <div className="MainCard">
             <div className="MainCardHeader">
                 <div>
-                    <TextField variant="outlined" size="small" placeholder={texts.SEARCH_FIELD} className="MainCardHeaderAdjustTextField" />
+                    <TextField
+                        variant="outlined"
+                        size="small"
+                        label={texts.SEARCH_FIELD_LABEL}
+                        placeholder={texts.SEARCH_FIELD_PLACEHOLDER}
+                        className="MainCardHeaderAdjustTextField"
+                    />
                     <span className="MainCardHeaderAdjustButtonPosition">
                         <ActionButton icon={<FilterListIcon />} text={texts.FILTERS} onClick={onOpenFilter} />
                     </span>

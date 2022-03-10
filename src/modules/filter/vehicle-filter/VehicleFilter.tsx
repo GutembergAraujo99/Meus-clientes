@@ -14,19 +14,44 @@ export function VehicleFilter() {
     return <div className="VehicleFilter">
         <div className="VehicleFilterAdjustFields">
             <div className="VehicleFilterAdjustField">
-                <TextField variant="outlined" size="small" placeholder={texts.VEHICLE_BRAND_PLACEHOLDER} className="VehicleFilterBrand" />
+                <TextField
+                    variant="outlined"
+                    size="small"
+                    label={texts.VEHICLE_BRAND_LABEL}
+                    className="VehicleFilterBrand"
+                />
             </div>
             <div className="VehicleFilterAdjustField">
-                <TextField variant="outlined" size="small" placeholder={texts.VEHICLE_MODEL_PLACEHOLDER} className="VehicleFilterModel" />
+                <TextField
+                    variant="outlined"
+                    size="small"
+                    label={texts.VEHICLE_MODEL_LABEL}
+                    className="VehicleFilterModel"
+                />
             </div>
             <div className="VehicleFilterAdjustField">
-                <TextField variant="outlined" size="small" placeholder={texts.VEHICLE_VERSION_PLACEHOLDER} className="VehicleFilterVersion" />
+                <TextField
+                    variant="outlined"
+                    size="small"
+                    label={texts.VEHICLE_VERSION_LABEL}
+                    className="VehicleFilterVersion"
+                />
             </div>
             <div className="VehicleFilterAdjustField">
-                <TextField variant="outlined" size="small" placeholder={texts.VEHICLE_MODEL_YEAR_PLACEHOLDER} className="VehicleFilterModelYear" />
+                <TextField
+                    variant="outlined"
+                    size="small"
+                    label={texts.VEHICLE_MODEL_YEAR_LABEL}
+                    className="VehicleFilterModelYear"
+                />
             </div>
             <div className="VehicleFilterAdjustField">
-                <TextField variant="outlined" size="small" placeholder={texts.VEHICLE_PLATE_PLACEHOLDER} className="VehicleFilterPlate" />
+                <TextField
+                    variant="outlined"
+                    size="small"
+                    label={texts.VEHICLE_PLATE_LABEL}
+                    className="VehicleFilterPlate"
+                />
             </div>
             <div className="VehicleFilterAdjustField">
                 {vehicleFilterItems.map((item, index) => {
@@ -41,13 +66,26 @@ export function VehicleFilter() {
                 })}
             </div>
             <div className="VehicleFilterAdjustField">
-                <TextField variant="outlined" size="small" placeholder={texts.VEHICLE_CHASSIS_PLACEHOLDER} className="VehicleFilterChassis" />
+                <TextField 
+                    variant="outlined" 
+                    size="small" 
+                    label={texts.VEHICLE_CHASSIS_LABEL} 
+                    className="VehicleFilterChassis" 
+                />
             </div>
             <div className="VehicleFilterAdjustField">
-                <SimpleDatePicker label={texts.SALE_DATE_LABEL} inputFormat={texts.DATE_FORMAT} className="VehicleFilterSaleDate" />
+                <SimpleDatePicker 
+                    label={texts.SALE_DATE_LABEL} 
+                    inputFormat={texts.DATE_FORMAT} 
+                    className="VehicleFilterSaleDate" 
+                />
             </div>
             <div className="VehicleFilterAdjustField">
-                <SimpleDatePicker label={texts.INVOICE_DATE_LABEL} inputFormat={texts.DATE_FORMAT} className="VehicleFilterInvoiceDate" />
+                <SimpleDatePicker 
+                    label={texts.INVOICE_DATE_LABEL} 
+                    inputFormat={texts.DATE_FORMAT} 
+                    className="VehicleFilterInvoiceDate"
+                 />
             </div>
         </div>
     </div>

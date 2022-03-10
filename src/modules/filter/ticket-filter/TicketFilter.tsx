@@ -16,7 +16,12 @@ export function TicketFilter() {
     return <div className="TicketFilter">
         <div className="TicketFilterAdjustFields">
             <div className="TicketFilterAdjustField">
-                <TextField variant="outlined" size="small" placeholder={texts.TICKET_NUMBER_PLACEHOLDER} className="TicketFilterAdjustTicketNumber" />
+                <TextField
+                    variant="outlined"
+                    size="small"
+                    label={texts.TICKET_NUMBER_LABEL}
+                    className="TicketFilterAdjustTicketNumber"
+                />
             </div>
             <div className="TicketFilterAdjustField">
                 {ticketFilterItems.map((item, index) => {

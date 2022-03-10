@@ -1,5 +1,5 @@
 import { SelectChangeEvent, TextField } from '@material-ui/core';
-import * as React from 'react';
+import React, { useState } from 'react';
 import InputMask from 'react-input-mask';
 import { ComboBox } from '../../../components/ComboBox/ComboBox';
 import { SimpleDatePicker } from '../../../components/DatePicker/DatePicker';
@@ -10,37 +10,61 @@ import './CustomerFilter.scss';
 const texts = TextsProvider.get()
 
 export function CustomerFilter() {
-    const [personType, setPersonType] = React.useState('');
-    const [cpf, setCpf] = React.useState('');
-    const [cnpj, setCnpj] = React.useState('');
-    const [source, setSource] = React.useState('');
-    const [gender, setGender] = React.useState('');
-    const [customerType, setCustomerType] = React.useState('');
-    const [occupationArea, setOccupationArea] = React.useState('');
+    const [name, setName] = useState('');
+    const [email, setEmail] = useState('');
+    const [phone, setPhone] = useState('');
+    const [personType, setPersonType] = useState('');
+    const [cpf, setCpf] = useState('');
+    const [cnpj, setCnpj] = useState('');
+    const [source, setSource] = useState('');
+    const [gender, setGender] = useState('');
+    const [customerType, setCustomerType] = useState('');
+    const [occupationArea, setOccupationArea] = useState('');
 
     let mask = '';
-    let placeholderMask = '';
+    let labelMask = '';
     let value: string | number | readonly string[] | null | undefined = null;
     if (+personType === 0) {
         mask = '999.999.999-99';
-        placeholderMask = texts.CPF_LABEL;
+        labelMask = texts.CPF_LABEL;
         value = cpf;
     } else {
         mask = '99.999.999/9999-99';
-        placeholderMask = texts.CNPJ_LABEL;
+        labelMask = texts.CNPJ_LABEL;
         value = cnpj;
     }
 
     return <div className="CustomerFilter">
         <div className="CustomerFilterAdjustFields">
             <div className="CustomerFilterAdjustField">
-                <TextField variant="outlined" size="small" placeholder={texts.NAME_PLACEHOLDER} className="CustomerFilterAdjustName" />
+                <TextField
+                    variant="outlined"
+                    size="small"
+                    label={texts.NAME_LABEL}
+                    value={name}
+                    onChange={onChangeName}
+                    className="CustomerFilterAdjustName"
+                />
             </div>
             <div className="CustomerFilterAdjustField">
-                <TextField variant="outlined" size="small" placeholder={texts.EMAIL_PLACEHOLDER} className="CustomerFilterAdjustEmail" />
+                <TextField
+                    variant="outlined"
+                    size="small"
+                    label={texts.EMAIL_LABEL}
+                    value={email}
+                    onChange={onChangeEmail}
+                    className="CustomerFilterAdjustEmail"
+                />
             </div>
             <div className="CustomerFilterAdjustField">
-                <TextField variant="outlined" size="small" placeholder={texts.PHONE_PLACEHOLDER} className="CustomerFilterAdjustPhone" />
+                <TextField
+                    variant="outlined"
+                    size="small"
+                    label={texts.PHONE_LABEL}
+                    value={phone}
+                    onChange={onChangePhone}
+                    className="CustomerFilterAdjustPhone"
+                />
             </div>
             <div className="CustomerFilterAdjustField">
                 {customerFilterItems.map((item, index) => {
@@ -59,7 +83,7 @@ export function CustomerFilter() {
                     {() => <TextField
                         variant="outlined"
                         size="small"
-                        placeholder={placeholderMask}
+                        label={labelMask}
                         className="CustomerFilterAdjustCpf" />
                     }
                 </InputMask>
@@ -121,6 +145,18 @@ export function CustomerFilter() {
         </div>
     </div>
 
+    function onChangeName(event: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) {
+        setName(event.target.value);
+    }
+
+    function onChangeEmail(event: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) {
+        setEmail(event.target.value);
+    }
+
+    function onChangePhone(event: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) {
+        setPhone(event.target.value);
+    }
+
     function onChangeDocument(event: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) {
         if (value === cpf) {
             setCpf(event.target.value);
@@ -151,18 +187,29 @@ export function CustomerFilter() {
 }
 
 function CustomerFilterAddress() {
-    const [city, setCity] = React.useState('');
-    const [state, setState] = React.useState('');
-    const [country, setCountry] = React.useState('');
+    const [city, setCity] = useState('');
+    const [state, setState] = useState('');
+    const [country, setCountry] = useState('');
+    const [cep, setCep] = useState('');
 
     return <div className="CustomerFilterAddress">
-        <p className="CustomerFilterAddressLabel">Endereço</p>
+        <p className="CustomerFilterAddressLabel">{texts.ADDRESS_TITLE}</p>
         <div className="CustomerFilterAddressAdjustFields">
             <div className="CustomerFilterAddressAdjustField">
-                <TextField variant="outlined" size="small" placeholder={texts.STREET_PLACEHOLDER} className="CustomerFilterAddressAdjustStreet" />
+                <TextField
+                    variant="outlined"
+                    size="small"
+                    label={texts.STREET_LABEL}
+                    className="CustomerFilterAddressAdjustStreet"
+                />
             </div>
             <div className="CustomerFilterAddressAdjustField">
-                <TextField variant="outlined" size="small" placeholder={texts.DISTRICT_PLACEHOLDER} className="CustomerFilterAddressAdjustDistrict" />
+                <TextField
+                    variant="outlined"
+                    size="small"
+                    label={texts.DISTRICT_LABEL}
+                    className="CustomerFilterAddressAdjustDistrict"
+                />
             </div>
             <div className="CustomerFilterAddressAdjustField">
                 {customerFilterItems.map((item, index) => {
@@ -201,7 +248,14 @@ function CustomerFilterAddress() {
                 })}
             </div>
             <div className="CustomerFilterAddressAdjustField">
-                <TextField variant="outlined" size="small" placeholder={texts.COUNTRY_LABEL} className="CustomerFilterAddressAdjustCep" />
+                <InputMask mask="99999-999" value={cep} onChange={onChangeCep}>
+                    {() => <TextField
+                        variant="outlined"
+                        size="small"
+                        label={texts.CEP_LABEL}
+                        className="CustomerFilterAddressAdjustCep"
+                    />}
+                </InputMask>
             </div>
         </div>
     </div>
@@ -216,5 +270,9 @@ function CustomerFilterAddress() {
 
     function onChangeCountry(event: SelectChangeEvent<string>) {
         setCountry(event.target.value);
+    }
+
+    function onChangeCep(event: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) {
+        setCep(event.target.value);
     }
 }

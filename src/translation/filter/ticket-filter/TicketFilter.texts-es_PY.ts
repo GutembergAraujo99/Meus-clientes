@@ -1,6 +1,5 @@
 export const Texts = {
-    TICKET_NUMBER_PLACEHOLDER: 'N° do evento',
-    
+    TICKET_NUMBER_LABEL: 'N° do evento',
     DATE_TYPE_LABEL: 'Tipo de data',
     DATE_START_LABEL: 'Data início',
     DATE_END_LABEL: 'Data fim',

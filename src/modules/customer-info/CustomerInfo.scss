@@ -5,7 +5,6 @@
     font-weight: $font-weight;
     font-size: $font-size;
     letter-spacing: $letter-spacing;
-    color: $font-title-color;
 }
 
 .CustomerInfo {
@@ -22,6 +21,8 @@
     }
 
     &Details {
+        margin-top: -12px;
+
         &Accordion {
             &Summary {
                 width: 845px;
@@ -53,6 +54,7 @@
 
                 &AdjustFont {
                     @include CustomFont(400, 16px, 0.15px);
+                    color: $font-title-color;
                 }
 
                 &RestrictionsContainer {

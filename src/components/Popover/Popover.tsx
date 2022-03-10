@@ -43,7 +43,7 @@ export function CustomPopover({ type, icon, hasRestrictions }: CustomPopoverProp
             className="Popover"
         >
             <div className="PopoverFrame">
-                <p className="PopoverTitle">{title}</p>
+                <div className="PopoverTitle">{title}</div>
                 {contents.map((content, index) => {
                     return <div key={index}>
                         {type === 'tickets'

@@ -19,6 +19,7 @@ export function Filter({ open, onClose }: FilterProps) {
         defaultButtonText={texts.CLEAR_BUTTON_MODAL_FOOTER}
         secondaryButtonText={texts.FILTER_BUTTON_MODAL_FOOTER}
         open={open}
+        onClick={onClose}
         onClose={onClose}
         hasDivider
     >

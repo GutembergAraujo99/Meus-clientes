@@ -16,10 +16,11 @@ interface ModalProps {
     open: boolean
     className?: string
     onOpenEdition?: () => void
+    onClick: () => void
     onClose: () => void
 }
 
-export function Modal({ title, hasDivider, hasEdition, closeIcon, children, defaultButtonText, secondaryButtonText, open, className, onOpenEdition, onClose }: ModalProps) {
+export function Modal({ title, hasDivider, hasEdition, closeIcon, children, defaultButtonText, secondaryButtonText, open, className, onOpenEdition, onClick, onClose }: ModalProps) {
     return <Dialog
         open={open}
         keepMounted
@@ -52,7 +53,7 @@ export function Modal({ title, hasDivider, hasEdition, closeIcon, children, defa
         {defaultButtonText !== undefined && secondaryButtonText !== undefined
             ? <DialogActions className="ModalFooter">
                 <Button variant="contained" onClick={onClose}>{defaultButtonText}</Button>
-                <Button variant="contained" color="secondary" onClick={onClose}>{secondaryButtonText}</Button>
+                <Button variant="contained" color="secondary" onClick={onClick}>{secondaryButtonText}</Button>
             </DialogActions>
             : <></>
         }

@@ -23,6 +23,7 @@ export function CustomerRegisterForm({ open, onClose }: CustomerRegisterFormProp
         defaultButtonText={texts.CANCEL_BUTTON_MODAL_FOOTER}
         secondaryButtonText={texts.SAVE_BUTTON_MODAL_FOOTER}
         open={open}
+        onClick={onClose}
         onClose={onClose}
         hasDivider
     >
@@ -62,7 +63,7 @@ function CustomerRegisterFormPersonalData() {
         <TextField
             variant="outlined"
             size="small"
-            placeholder={texts.FULL_NAME_PLACEHOLDER}
+            label={texts.FULL_NAME_LABEL}
             className="CustomerRegisterFormPersonalDataAdjustNameField"
         />
         <div className="CustomerRegisterFormPersonalDataAdjustFields">
@@ -298,20 +299,29 @@ function CustomerRegisterFormAddress() {
                 })}
             </div>
             <div className="CustomerRegisterFormAddressSpacingBetweenFields">
-                <TextField variant="outlined" size="small" placeholder={texts.PUBLIC_PLACE_PLACEHOLDER} className="CustomerRegisterFormAddressAdjustPublicPlaceNameField" />
+                <TextField 
+                    variant="outlined" 
+                    size="small"
+                    label={texts.PUBLIC_PLACE_DESCRIPTION_LABEL}
+                    className="CustomerRegisterFormAddressAdjustPublicPlaceNameField" 
+                />
             </div>
             <div className="CustomerRegisterFormAddressSpacingBetweenFields">
                 <TextField
                     type="number"
                     variant="outlined"
                     size="small"
-                    placeholder={texts.PLACE_NUMBER_PLACEHOLDER}
-                    InputLabelProps={{ shrink: true }}
+                    label={texts.PLACE_NUMBER_LABEL}
                     className="CustomerRegisterFormAddressAdjustPublicPlaceNumberField"
                 />
             </div>
             <div className="CustomerRegisterFormAddressSpacingBetweenFields">
-                <TextField variant="outlined" size="small" placeholder={texts.COUNTRY_PLACEHOLDER} className="CustomerRegisterFormAddressAdjustCountryField" />
+                <TextField
+                    variant="outlined" 
+                    size="small"
+                    label={texts.COUNTRY_LABEL}
+                    className="CustomerRegisterFormAddressAdjustCountryField" 
+                />
             </div>
             <div className="CustomerRegisterFormAddressSpacingBetweenFields">
                 {items.map((item, index) => {
@@ -338,13 +348,19 @@ function CustomerRegisterFormAddress() {
                 })}
             </div>
             <div className="CustomerRegisterFormAddressSpacingBetweenFields">
-                <TextField variant="outlined" size="small" placeholder={texts.DISTRICT_PLACEHOLDER} className="CustomerRegisterFormAddressAdjustDistrictField" />
+                <TextField 
+                    variant="outlined" 
+                    size="small"
+                    label={texts.DISTRICT_LABEL}
+                    className="CustomerRegisterFormAddressAdjustDistrictField" 
+                />
             </div>
             <div className="CustomerRegisterFormAddressSpacingBetweenFields">
                 <InputMask mask="99999-999" value={cep} onChange={onChangeCep}>
                     {() => <TextField
                         variant="outlined"
                         size="small"
+                        label={texts.CEP_LABEL}
                         placeholder={texts.CEP_PLACEHOLDER}
                         className="CustomerRegisterFormAddressAdjustCepField"
                     />}
