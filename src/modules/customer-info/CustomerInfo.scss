@@ -21,21 +21,45 @@
         flex-wrap: wrap;
     }
 
-    &AdjustIcons {
-        display: flex;
-        justify-content: flex-start;
-        align-items: center;
-    }
+    &Details {
+        &Accordion {
+            &Summary {
+                width: 845px;
+                padding: 0px !important;
 
-    &AdjustIconPosition {
-        width: 40px;
-        height: 40px;
-        background-color: #7bc67e;
-        border-radius: 50%;
-        margin-right: 10px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
+                &Title {
+                    display: flex;
+                    align-items: center;
+                    flex-shrink: 0;
+                    width: 80px;
+                }
+
+                &IconPosition {
+                    margin: 2px 0px 0px 10px;
+                }
+
+                &DividerPosition {
+                    width: 734.78px;
+                    margin-top: 14px;
+                }
+            }
+
+            &Details {
+                padding: 0px !important;
+
+                &SpacingBetweenElements {
+                    margin-bottom: 5px;
+                }
+
+                &AdjustFont {
+                    @include CustomFont(400, 16px, 0.15px);
+                }
+
+                &RestrictionsContainer {
+                    margin-top: -5px;
+                }
+            }
+        }
     }
 
     &Contact {
@@ -143,7 +167,7 @@
             background-color: #2d9600;
             border-radius: 8px 0px 0px 8px;
             color: #fff;
-            padding: 5px;
+            padding: 8px;
             margin-right: 5px;
         }
 

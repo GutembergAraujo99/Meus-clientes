@@ -1,15 +1,17 @@
+import { Accordion, AccordionDetails, AccordionSummary, Divider } from '@material-ui/core';
 import BusinessIcon from '@material-ui/icons/Business';
 import DirectionsCarIcon from '@material-ui/icons/DirectionsCar';
 import EmailIcon from '@material-ui/icons/Email';
+import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import LocalOfferIcon from '@material-ui/icons/LocalOffer';
 import LocalPhoneIcon from '@material-ui/icons/LocalPhone';
-import MessageIcon from '@material-ui/icons/Message';
 import RoomIcon from '@material-ui/icons/Room';
 import ThumbDownIcon from '@material-ui/icons/ThumbDown';
 import ThumbUpIcon from '@material-ui/icons/ThumbUp';
-import WhatsAppIcon from '@material-ui/icons/WhatsApp';
+import WarningIcon from '@material-ui/icons/Warning';
 import * as React from 'react';
 import { Modal } from '../../components/Modal/Modal';
+import { items } from '../../mock/CustomerInfo.mock';
 import { TextsProvider } from '../../translation/customer-info';
 import './CustomerInfo.scss';
 
@@ -27,7 +29,6 @@ export function CustomerInfo({ open, onClose, onOpenEdition }: CustomerInfoProps
         open={open}
         onClose={onClose}
         onOpenEdition={onOpenEdition}
-        hasAlert
         hasEdition
     >
         <CustomerInfoContent />
@@ -46,26 +47,57 @@ function CustomerInfoContent() {
         <div>
             <p className="CustomerInfoContentTitle">{texts.LAST_TICKETS_SECTION_TITLE}</p>
             <CustomerInfoLastTicket situation="approved" />
-            <CustomerInfoLastTicket situation="unapproved" />
             <CustomerInfoLastTicket situation="waiting" />
+            <CustomerInfoLastTicket situation="unapproved" />
         </div>
     </div>
 }
 
 function CustomerInfoDetails() {
-    return <div className="CustomerInfoAdjustIcons">
-        <div className="CustomerInfoAdjustIconPosition">
-            <LocalPhoneIcon htmlColor="#ffffff" />
-        </div>
-        <div className="CustomerInfoAdjustIconPosition">
-            <MessageIcon htmlColor="#ffffff" />
-        </div>
-        <div className="CustomerInfoAdjustIconPosition">
-            <EmailIcon htmlColor="#ffffff" />
-        </div>
-        <div className="CustomerInfoAdjustIconPosition">
-            <WhatsAppIcon htmlColor="#ffffff" />
-        </div>
+    const [expanded, setExpanded] = React.useState<string | false>(false);
+
+    const handleChange = (panel: string) => (event: React.SyntheticEvent, isExpanded: boolean) => {
+        setExpanded(isExpanded ? panel : false);
+    }
+
+    return <div className="CustomerInfoDetails">
+        <Accordion expanded={expanded === 'panelLgpd'} elevation={0} disableGutters onChange={handleChange('panelLgpd')}>
+            <AccordionSummary expandIcon={<ExpandMoreIcon />} className="CustomerInfoDetailsAccordionSummary">
+                <div className="CustomerInfoDetailsAccordionSummaryTitle">
+                    <b>{texts.LGPD_TITLE}</b>
+                    <div className="CustomerInfoDetailsAccordionSummaryIconPosition">
+                        <WarningIcon color="warning" />
+                    </div>
+                </div>
+                <div className="CustomerInfoDetailsAccordionSummaryDividerPosition">
+                    <Divider />
+                </div>
+            </AccordionSummary>
+            <AccordionDetails className="CustomerInfoDetailsAccordionDetails">
+                <div>
+                    <div className="CustomerInfoDetailsAccordionDetailsSpacingBetweenElements">
+                        {texts.CONTACT_PREFERENCES_HEADER_TITLE}
+                    </div>
+                    <div className="CustomerInfoDetailsAccordionDetailsAdjustFont">
+                        {texts.CONTACT_PREFERENCES_CONTENT_DESCRIPTION}
+                    </div>
+                </div>
+                <div>
+                    <p>{texts.RESTRICTIONS_HEADER_TITLE}</p>
+                    <div className="CustomerInfoDetailsAccordionDetailsRestrictionsContainer">
+                        <ul className="CustomerInfoDetailsAccordionDetailsAdjustFont">
+                            {items.map(item => {
+                                return item.restrictions.map(value => {
+                                    return <li key={value.id} className="CustomerInfoDetailsAccordionDetailsSpacingBetweenElements">
+                                        {value.name}
+                                    </li>
+                                })
+                            })}
+                        </ul>
+                    </div>
+                </div>
+            </AccordionDetails>
+        </Accordion>
     </div>
 }
 
@@ -144,10 +176,10 @@ function CustomerInfoLastTicket({ situation }: CustomerInfoLastTicketProps) {
         <div className="CustomerInfoLastTicketAdjustItems">
             <div className="CustomerInfoLastTicketAdjustIcon" style={inlineLastTicketStyle}>
                 {situation === 'approved'
-                    ? <ThumbUpIcon fontSize="small" />
+                    ? <ThumbUpIcon fontSize="inherit" />
                     : situation === 'unapproved'
-                        ? <ThumbDownIcon fontSize="small" />
-                        : <LocalOfferIcon fontSize="small" />
+                        ? <ThumbDownIcon fontSize="inherit" />
+                        : <LocalOfferIcon fontSize="inherit" />
                 }
             </div>
             <div className="CustomerInfoLastTicketAdjustItems">

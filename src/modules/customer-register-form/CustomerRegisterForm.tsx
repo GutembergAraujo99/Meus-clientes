@@ -141,7 +141,7 @@ function CustomerRegisterFormPersonalData() {
 
 function CustomerRegisterFormContact() {
     const [phoneList, setPhoneList] = React.useState(['']);
-    const [phoneNumber, setPhoneNumber] = React.useState(['']);
+    const [phoneNumberList, setPhoneNumberList] = React.useState(['']);
     const [emailList, setEmailList] = React.useState(['']);
 
     return <div className="CustomerRegisterFormContact">
@@ -154,12 +154,12 @@ function CustomerRegisterFormContact() {
             <div className="CustomerRegisterFormContactSpacingBetweenFields">
                 {phoneList.map((phone, index) => {
                     return <div key={index} className="CustomerRegisterFormContactFieldContainer">
-                        {items.map((item, itemIndex) => {
+                        {items.map((phoneItem, phoneItemIndex) => {
                             return <ComboBox
-                                key={itemIndex}
+                                key={phoneItemIndex}
                                 value={phone}
                                 label={texts.PHONE_TYPE_LABEL}
-                                items={item.customer.phoneType}
+                                items={phoneItem.customer.phoneType}
                                 onChange={(e) => onChangePhoneType(e, index)}
                                 className="CustomerRegisterFormContactPhoneTypeField"
                             />
@@ -170,19 +170,19 @@ function CustomerRegisterFormContact() {
                                 variant="outlined"
                                 size="small"
                                 placeholder={texts.TYPE_YOUR_PHONE_PLACEHOLDER}
-                                onChange={(e) => onChangePhone(e, index)}
+                                onChange={(e) => onChangePhoneNumber(e, index)}
                                 className="CustomerRegisterFormContactPhoneField"
                             />
                         </div>
                         <div>
-                            <IconButton color="secondary" onClick={onAddNewPhoneField}>
-                                <AddCircleIcon />
+                            <IconButton color="error" onClick={() => onRemovePhoneFields(index)}>
+                                <RemoveCircleIcon />
                             </IconButton>
                         </div>
-                        {index > 0 &&
+                        {phoneList.length - 1 === index &&
                             <div>
-                                <IconButton color="error" onClick={() => onRemovePhoneFields(index)}>
-                                    <RemoveCircleIcon />
+                                <IconButton color="secondary" onClick={onAddNewPhoneField}>
+                                    <AddCircleIcon />
                                 </IconButton>
                             </div>
                         }
@@ -205,14 +205,14 @@ function CustomerRegisterFormContact() {
                                 />
                             </div>
                             <div>
-                                <IconButton color="secondary" onClick={onAddNewEmailField}>
-                                    <AddCircleIcon />
+                                <IconButton color="error" onClick={() => onRemoveEmailField(index)}>
+                                    <RemoveCircleIcon />
                                 </IconButton>
                             </div>
-                            {index > 0 &&
+                            {emailList.length - 1 === index &&
                                 <div>
-                                    <IconButton color="error" onClick={() => onRemoveEmailField(index)}>
-                                        <RemoveCircleIcon />
+                                    <IconButton color="secondary" onClick={onAddNewEmailField}>
+                                        <AddCircleIcon />
                                     </IconButton>
                                 </div>
                             }
@@ -229,9 +229,9 @@ function CustomerRegisterFormContact() {
         setPhoneList([...phoneList]);
     }
 
-    function onChangePhone(event: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>, index: number) {
-        phoneNumber[index] = event.target.value;
-        setPhoneNumber([...phoneNumber]);
+    function onChangePhoneNumber(event: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>, index: number) {
+        phoneNumberList[index] = event.target.value;
+        setPhoneNumberList([...phoneNumberList]);
     }
 
     function onAddNewPhoneField() {
@@ -239,9 +239,18 @@ function CustomerRegisterFormContact() {
     }
 
     function onRemovePhoneFields(index: number) {
-        const list = [...phoneList];
-        list.splice(index, 1);
-        setPhoneList(list);
+        let phones = [...phoneList];
+        let phoneNumbers = [...phoneNumberList];
+
+        if (phones.length > 1 && phoneNumbers.length > 1) {
+            phones.splice(index, 1);
+            phoneNumbers.splice(index, 1);
+        } else {
+            phones = [''];
+            phoneNumbers = [''];
+        }
+
+        setPhoneList(phones);
     }
 
     function onChangeEmail(event: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>, index: number) {
@@ -254,8 +263,15 @@ function CustomerRegisterFormContact() {
     }
 
     function onRemoveEmailField(index: number) {
-        const list = [...emailList];
-        list.splice(index, 1);
+        let list = [...emailList];
+
+        if (list.length > 1) {
+            list.splice(index, 1);
+        } else {
+            console.log(list)
+            list = [''];
+        }
+
         setEmailList(list);
     }
 }

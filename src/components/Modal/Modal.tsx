@@ -1,14 +1,12 @@
 import { Button, Dialog, DialogActions, DialogContent, DialogTitle, Divider, IconButton } from '@material-ui/core';
 import CloseIcon from '@material-ui/icons/Close';
 import EditIcon from '@material-ui/icons/Edit';
-import WarningIcon from '@material-ui/icons/Warning';
 import clsx from 'clsx';
 import React from 'react';
 import './Modal.scss';
 
 interface ModalProps {
     title: string
-    hasAlert?: boolean
     hasDivider?: boolean
     hasEdition?: boolean
     closeIcon?: boolean
@@ -21,7 +19,7 @@ interface ModalProps {
     onClose: () => void
 }
 
-export function Modal({ title, hasAlert, hasDivider, hasEdition, closeIcon, children, defaultButtonText, secondaryButtonText, open, className, onOpenEdition, onClose }: ModalProps) {
+export function Modal({ title, hasDivider, hasEdition, closeIcon, children, defaultButtonText, secondaryButtonText, open, className, onOpenEdition, onClose }: ModalProps) {
     return <Dialog
         open={open}
         keepMounted
@@ -30,17 +28,7 @@ export function Modal({ title, hasAlert, hasDivider, hasEdition, closeIcon, chil
     >
         <DialogTitle>
             <div className="ModalHeader">
-                <div className="ModalTitle">
-                    {title}
-                    {hasAlert
-                        ? <span className="ModalAlertIcon">
-                            <IconButton>
-                                <WarningIcon color="warning" />
-                            </IconButton>
-                        </span>
-                        : <></>
-                    }
-                </div>
+                <div className="ModalTitle">{title}</div>
                 <div className="ModalActionIcons">
                     {hasEdition
                         ? <IconButton onClick={onOpenEdition}>
