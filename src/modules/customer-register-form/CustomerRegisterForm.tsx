@@ -140,8 +140,8 @@ function CustomerRegisterFormPersonalData() {
 }
 
 function CustomerRegisterFormContact() {
-    const [phoneList, setPhoneList] = React.useState(['']);
-    const [phoneNumberList, setPhoneNumberList] = React.useState(['']);
+    const [phoneList, setPhoneList] = React.useState([{ type: '', number: '' }]);
+    const [phoneNumberList, setPhoneNumberList] = React.useState([{ type: '', number: '' }]);
     const [emailList, setEmailList] = React.useState(['']);
 
     return <div className="CustomerRegisterFormContact">
@@ -157,7 +157,7 @@ function CustomerRegisterFormContact() {
                         {items.map((phoneItem, phoneItemIndex) => {
                             return <ComboBox
                                 key={phoneItemIndex}
-                                value={phone}
+                                value={phone.type}
                                 label={texts.PHONE_TYPE_LABEL}
                                 items={phoneItem.customer.phoneType}
                                 onChange={(e) => onChangePhoneType(e, index)}
@@ -170,6 +170,7 @@ function CustomerRegisterFormContact() {
                                 variant="outlined"
                                 size="small"
                                 placeholder={texts.TYPE_YOUR_PHONE_PLACEHOLDER}
+                                value={phone.number}
                                 onChange={(e) => onChangePhoneNumber(e, index)}
                                 className="CustomerRegisterFormContactPhoneField"
                             />
@@ -225,17 +226,17 @@ function CustomerRegisterFormContact() {
     </div>
 
     function onChangePhoneType(event: SelectChangeEvent<string>, index: number) {
-        phoneList[index] = event.target.value;
+        phoneList[index]['type'] = event.target.value;
         setPhoneList([...phoneList]);
     }
 
     function onChangePhoneNumber(event: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>, index: number) {
-        phoneNumberList[index] = event.target.value;
-        setPhoneNumberList([...phoneNumberList]);
+        phoneList[index]['number'] = event.target.value;
+        setPhoneNumberList([...phoneList]);
     }
 
     function onAddNewPhoneField() {
-        setPhoneList([...phoneList, '']);
+        setPhoneList([...phoneList, { type: '', number: '' }]);
     }
 
     function onRemovePhoneFields(index: number) {
@@ -246,8 +247,8 @@ function CustomerRegisterFormContact() {
             phones.splice(index, 1);
             phoneNumbers.splice(index, 1);
         } else {
-            phones = [''];
-            phoneNumbers = [''];
+            phones = [{ type: '', number: '' }];
+            phoneNumbers = [{ type: '', number: '' }];
         }
 
         setPhoneList(phones);
@@ -268,7 +269,6 @@ function CustomerRegisterFormContact() {
         if (list.length > 1) {
             list.splice(index, 1);
         } else {
-            console.log(list)
             list = [''];
         }
 
